@@ -74,35 +74,37 @@
             <div class="flex gap-4 text-semiWhite border-top relative">
                 <b class="w-[100px]">Casts</b>
                 <div class="w-[972px] flex flex-wrap gap-4 absolute right-0 top-0 pt-4">
-                    <p class="name">Robert Downey Jr.</p>
+                    <a href="./actor-profile.php" class="name">Robert Downey Jr.</a>
                     <span>&#x2022;</span>
-                    <p class="name">Chris Hemsworth</p>
+                    <a href="./actor-profile.php" class="name">Chris Hemsworth</a>
                     <span>&#x2022;</span>
-                    <p class="name">Mark Ruffalo</p>
+                    <a href="./actor-profile.php" class="name">Mark Ruffalo</a>
                     <span>&#x2022;</span>
-                    <p class="name">Chris Evans</p>
+                    <a href="./actor-profile.php" class="name">Chris Evans</a>
                     <span>&#x2022;</span>
-                    <p class="name">Scarlett Johansson</p>
+                    <a href="./actor-profile.php" class="name">Scarlett Johansson</a>
                     <span>&#x2022;</span>
-                    <p class="name">Don Cheadle</p>
+                    <a href="./actor-profile.php" class="name">Don Cheadle</a>
                     <span>&#x2022;</span>
-                    <p class="name">Benedict Cumberbatch</p>
+                    <a href="./actor-profile.php" class="name">Benedict Cumberbatch</a>
                     <span>&#x2022;</span>
-                    <p class="name">Tom Holland</p>
+                    <a href="./actor-profile.php" class="name">Tom Holland</a>
                     <span>&#x2022;</span>
-                    <p class="name">Chadwick Boseman</p>
+                    <a href="./actor-profile.php" class="name">Chadwick Boseman</a>
                     <span>&#x2022;</span>
-                    <p class="name">Elizabeth Olsen</p>
+                    <a href="./actor-profile.php" class="name">Elizabeth Olsen</a>
                     <span>&#x2022;</span>
-                    <p class="name">Paul Bettany</p>
+                    <a href="./actor-profile.php" class="name">Paul Bettany</a>
                     <span>&#x2022;</span>
-                    <p class="name">Tom Hiddleston</p>
+                    <a href="./actor-profile.php" class="name">Tom Hiddleston</a>
                 </div>
             </div>
         </div>
     </div>
     
-    <?php include './components/footer.php'?>
+    <div class="text-semiWhite">
+        <?php include './components/footer.php'?>
+    </div>
 
     <script src="../js/main.js"></script>
 </body>

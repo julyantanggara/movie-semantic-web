@@ -570,6 +570,10 @@ video {
   bottom: -8rem;
 }
 
+.-bottom-40 {
+  bottom: -10rem;
+}
+
 .-top-2 {
   top: -0.5rem;
 }
@@ -608,6 +612,10 @@ video {
 
 .right-4 {
   right: 1rem;
+}
+
+.right-56 {
+  right: 14rem;
 }
 
 .top-0 {
@@ -714,6 +722,10 @@ video {
   height: 1rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -740,6 +752,14 @@ video {
 
 .h-\[414\.68px\] {
   height: 414.68px;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[50vh\] {
+  height: 50vh;
 }
 
 .h-\[60vh\] {
@@ -1004,6 +1024,10 @@ video {
   gap: 3rem;
 }
 
+.gap-14 {
+  gap: 3.5rem;
+}
+
 .gap-16 {
   gap: 4rem;
 }
@@ -1096,6 +1120,11 @@ video {
   background-color: rgb(35 35 39 / var(--tw-bg-opacity));
 }
 
+.bg-semiWhite {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 246 248 / var(--tw-bg-opacity));
+}
+
 .bg-transparent {
   background-color: transparent;
 }
@@ -1125,6 +1154,15 @@ video {
 
 .to-purple-600 {
   --tw-gradient-to: #9333ea var(--tw-gradient-to-position);
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .p-4 {
@@ -1164,6 +1202,11 @@ video {
 .px-7 {
   padding-left: 1.75rem;
   padding-right: 1.75rem;
+}
+
+.px-72 {
+  padding-left: 18rem;
+  padding-right: 18rem;
 }
 
 .px-8 {
@@ -1612,6 +1655,12 @@ label {
   border-top: 1px solid #f5f6f8;
 }
 
+.border-bottom {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #232327;
+}
+
 /* CHECKBOX START */
 
 /* input[type="checkbox"] {
@@ -1680,6 +1729,14 @@ input[type="checkbox"]:checked::before {
   overflow-x: auto;
 }
 
+.profile-radius {
+  border-radius: 0% 0% 50% 50% / 0% 0% 10% 10% ;
+}
+
+#location:hover + #map{
+  display: block;
+}
+
 .before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
@@ -1744,6 +1801,10 @@ input[type="checkbox"]:checked::before {
 .hover\:text-mainColor:hover {
   --tw-text-opacity: 1;
   color: rgb(35 35 39 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .hover\:opacity-70:hover {

@@ -14,7 +14,7 @@
                     </svg>
                 </button>
 
-                <a href="./home.php" class="text-semiWhite">Home</a>
+                <a href="./home.php" class="text-semiWhite relative inline-block hover:before:w-full before:block before:bg-black dark:before:bg-[#d1d5db] before:absolute before:inset-x-0 before:left-0 before:bottom-[-2px] before:w-0 before:h-[1px] before:transition-width before:duration-300">Home</a>
             </div>
 
 

@@ -135,6 +135,12 @@ label {
   border-top: 1px solid #f5f6f8;
 }
 
+.border-bottom {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #232327;
+}
+
 /* CHECKBOX START */
 
 /* input[type="checkbox"] {
@@ -201,4 +207,12 @@ input[type="checkbox"]:checked::before {
 .overflow-x-scroll3 {
   scroll-behavior: smooth;
   overflow-x: auto;
+}
+
+.profile-radius {
+  border-radius: 0% 0% 50% 50% / 0% 0% 10% 10% ;
+}
+
+#location:hover + #map{
+  display: block;
 }

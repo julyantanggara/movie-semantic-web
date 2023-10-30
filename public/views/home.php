@@ -179,7 +179,9 @@
     </main>
     <!-- CONTENT END -->
     
-    <?php include './components/footer.php'?>
+    <div class="text-semiWhite">
+        <?php include './components/footer.php'?>
+    </div>
     
     <script
         src="https://code.jquery.com/jquery-3.7.1.min.js"

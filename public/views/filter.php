@@ -40,14 +40,14 @@
                         <div id="GenreFilterDropdown"
                             class="w-[350px] overflow-hidden p-4 absolute hidden left-0 top-12 rounded-md bg-lightGray flex flex-wrap shadow-md">
                             <label for="drama" class="dropdown flex gap-2 cursor-pointer w-[150px] items-center">
-                                <input type="checkbox" name="genre" class="genre-checkbox" id="drama" value="drama">
+                                <input type="checkbox" name="genre" class="genre-checkbox hidden" id="drama" value="drama">
                                 <div class="bg-white w-4 h-4 flex justify-center items-center rounded-full">
                                     <div class="bg-gradient-to-r from-pink-600 to-purple-600 rounded-full w-3 h-3 hidden"></div>
                                 </div>
                                 <p>Drama</p>
                             </label>
                             <label for="horror" class="dropdown flex gap-2 cursor-pointer w-[150px] items-center">
-                                <input type="checkbox" name="genre" class="genre-checkbox" id="horror">
+                                <input type="checkbox" name="genre" class="genre-checkbox hidden" id="horror" value="horror">
                                 <div class="bg-white w-4 h-4 flex justify-center items-center rounded-full">
                                     <div class="bg-gradient-to-r from-pink-600 to-purple-600 rounded-full w-3 h-3"></div>
                                 </div>
@@ -212,8 +212,10 @@
         </div>
     </div>
     <!-- PAGINATION END -->
-
-    <?php include './components/footer.php'?>
+    
+    <div class="text-semiWhite">    
+        <?php include './components/footer.php'?>
+    </div>
 
     <script src="../js/main.js"></script>
 </body>

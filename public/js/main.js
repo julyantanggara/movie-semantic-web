@@ -41,7 +41,7 @@ document.addEventListener('mousemove', (e) => {
     }, 200);
 });
 
-// search-result.html
+// navbar
 const showSearch = () => {
     const searchField = document.getElementById('searchField'),
         searchInput = document.getElementById('searchInput');
