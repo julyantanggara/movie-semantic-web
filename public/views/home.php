@@ -169,10 +169,10 @@
             <div class="h-[60vh] flex flex-col items-center justify-center">
                 <!--  -->
                 <div class="text-semiWhite text-6xl font-bold flex gap-4">
-                    <p class="box" data-duration="5000"> 4000</p>
+                    <p class="box" data-duration="3000"> 4000</p>
                     <p>Data</p>
                 </div>
-                <p class="text-semiWhite">/this section is under construction/</p>
+                <i class="text-semiWhite">insert text here</i>
                 <!--  -->
             </div>
         </div>

@@ -50,6 +50,7 @@ const showSearch = () => {
         requestAnimationFrame(() => {
             searchField.classList.remove('hidden');
             searchInput.focus();
+            document.body.classList.add('max-h-[100vh]', 'overflow-hidden');
             requestAnimationFrame(() => {
                 searchField.classList.add('opacity-100');
             });
@@ -57,6 +58,7 @@ const showSearch = () => {
     } else {
         requestAnimationFrame(() => {
             searchField.classList.remove('opacity-100');
+            document.body.classList.remove('max-h-[100vh]', 'overflow-hidden');
             requestAnimationFrame(() => {
                 searchField.classList.add('hidden');
             });
@@ -71,55 +73,62 @@ document.addEventListener('click', (event) => {
     if (event.target !== searchInput) {
         searchField.classList.add('hidden');
         searchField.classList.remove('opacity-100');
+        document.body.classList.remove('max-h-[100vh]', 'overflow-hidden');
     }
 });
 
-// DROPDOWN
-const dropdown1 = document.getElementById('GenreFilterDropdown');
-const dropdown2 = document.getElementById('CountryFilterDropdown');
-const dropdown3 = document.getElementById('YearFilterDropdown');
-const dropdown4 = document.getElementById('RatingFilterDropdown');
+// FILTER
+const showFilter = () => {
+    const modal = document.getElementById('modalFilter');
 
-const showDropdown = (dropdownId, iconId) => {
-    const icon = document.getElementById(iconId);
-    const dropdown = document.getElementById(dropdownId);
-
-    if (dropdown.classList.contains('hidden')) {
-        dropdown.classList.add('hidden');
-        dropdown.classList.remove('hidden');
+    if (modal.classList.contains('hidden')) {
+        requestAnimationFrame(() => {
+            modal.classList.remove('hidden') 
+            document.body.classList.add('max-h-[100vh]', 'overflow-hidden');
+            requestAnimationFrame(() => {
+                modal.classList.add('opacity-100');
+            });
+        });
     } else {
-        dropdown.classList.remove('hidden');
-        dropdown.classList.add('hidden');
+        requestAnimationFrame(() => {
+            modal.classList.remove('opacity-100');
+            document.body.classList.remove('max-h-[100vh]', 'overflow-hidden');
+            requestAnimationFrame(() => {
+                modal.classList.add('hidden');
+            });
+        });
     }
-};
+}
 
-const showGenreDropdown = () => {
-    showDropdown('GenreFilterDropdown', 'GenreDropdownIcon');
-    dropdown2.classList.add('hidden');
-    dropdown3.classList.add('hidden');
-    dropdown4.classList.add('hidden');
-};
+// FILTER CHECKBOX
 
-const showCountryDropdown = () => {
-    showDropdown('CountryFilterDropdown', 'CountryDropdownIcon');
-    dropdown1.classList.add('hidden');
-    dropdown3.classList.add('hidden');
-    dropdown4.classList.add('hidden');
-};
+// document.addEventListener("DOMContentLoaded", function() {
+//     var dramaCheckbox = document.getElementById("genre1");
+//     var checkedBox = document.querySelector(".checkedBox");
 
-const showYearDropdown = () => {
-    showDropdown('YearFilterDropdown', 'YearDropdownIcon');
-    dropdown1.classList.add('hidden');
-    dropdown2.classList.add('hidden');
-    dropdown4.classList.add('hidden');
-};
+//     dramaCheckbox.addEventListener("change", function() {
+//       if (dramaCheckbox.checked) {
+//         checkedBox.classList.remove("hidden");
+//       } else {
+//         checkedBox.classList.add("hidden");
+//       }
+//     });
+//   });
 
-const showRatingDropdown = () => {
-    showDropdown('RatingFilterDropdown', 'RatingDropdownIcon');
-    dropdown1.classList.add('hidden');
-    dropdown2.classList.add('hidden');
-    dropdown3.classList.add('hidden');
-};
+document.addEventListener("DOMContentLoaded", function() {
+    var checkboxes = document.querySelectorAll("input[type='checkbox']");
+    checkboxes.forEach(function(checkbox) {
+      var checkedBox = checkbox.previousElementSibling.querySelector(".checkedBox");
+
+      checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+          checkedBox.classList.remove("hidden");
+        } else {
+          checkedBox.classList.add("hidden");
+        }
+      });
+    });
+  });
 
 // POPULAR
 const scrollButtonLeft = document.getElementById("scrollLeft");

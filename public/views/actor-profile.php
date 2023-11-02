@@ -22,8 +22,11 @@
             <p class="text-4xl text-semiWhite font-bold">Chris Evans</p>
             <p class="text-xl text-semiWhite opacity-50">Actor</p>
             <p class="text-lg text-semiWhite opacity-50 flex items-center gap-1 cursor-pointer" id="location"><i class="fa-solid fa-location-dot"></i> USA</p>
-            <div id="map" class="absolute -bottom-40 right-56 bg-semiWhite p-2 shadow-lg rounded-md hidden">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21227025.39328672!2d-103.285865!3d49.499813!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sAmerika%20Serikat!5e0!3m2!1sid!2sid!4v1698634959917!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            <div class="absolute -bottom-40 right-60 bg-transparent justify-end hidden w-[500px]" id="map">
+                <div class="bg-semiWhite p-2 shadow-lg rounded-md ">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21227025.39328672!2d-103.285865!3d49.499813!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sAmerika%20Serikat!5e0!3m2!1sid!2sid!4v1698634959917!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </div>

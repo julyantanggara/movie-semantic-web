@@ -214,5 +214,9 @@ input[type="checkbox"]:checked::before {
 }
 
 #location:hover + #map{
-  display: block;
+  display: flex;
+}
+
+#map:hover{
+  display: flex;
 }

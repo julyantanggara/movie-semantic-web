@@ -12,10 +12,23 @@
         .dropdown input:checked + p {
             color: black;
         }
+        .dropdownCheck div {
+            display: none
+        }
+
+        .dropdown input:checked + .dropdownCheck div,
+        .dropdown2 input:checked + .dropdownCheck div {
+            display: block;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+        }
+    </style>
     </style>
 </head>
 
-<body class="font-Work bg-mainColor text-[#f5f6f8]">
+<body class="font-Work bg-mainColor text-[#f5f6f8] relative">
 
     <?php include './components/navbar.php'?>
 
@@ -29,96 +42,10 @@
                 </div>
                 <form action="" method="GET" class="flex gap-2">
                     <input type="text" name="search" placeholder="Search..." autocomplete="off"
-                        class="rounded-md text-\[\#f5f6f8\]] h-10 px-4 py-1 w-64 bg-lightGray">
+                        class="rounded-md text-\[\#f5f6f8\]] h-10 px-4 py-1 w-[900px] bg-lightGray">
 
-                    <button onclick="showGenreDropdown()" type="button"
-                        class="text-\[\#f5f6f8\]] w-40 h-10 px-4 py-2 bg-lightGray rounded-md relative">
-                        <div class="flex justify-between w-full items-center">
-                            Genre <i id="GenreDropdownIcon" class="fa-solid fa-caret-down"></i>
-                        </div>
-                        <!-- GENRE DROPDOWN START -->
-                        <div id="GenreFilterDropdown"
-                            class="w-[350px] overflow-hidden p-4 absolute hidden left-0 top-12 rounded-md bg-lightGray flex flex-wrap shadow-md">
-                            <label for="drama" class="dropdown flex gap-2 cursor-pointer w-[150px] items-center">
-                                <input type="checkbox" name="genre" class="genre-checkbox hidden" id="drama" value="drama">
-                                <div class="bg-white w-4 h-4 flex justify-center items-center rounded-full">
-                                    <div class="bg-gradient-to-r from-pink-600 to-purple-600 rounded-full w-3 h-3 hidden"></div>
-                                </div>
-                                <p>Drama</p>
-                            </label>
-                            <label for="horror" class="dropdown flex gap-2 cursor-pointer w-[150px] items-center">
-                                <input type="checkbox" name="genre" class="genre-checkbox hidden" id="horror" value="horror">
-                                <div class="bg-white w-4 h-4 flex justify-center items-center rounded-full">
-                                    <div class="bg-gradient-to-r from-pink-600 to-purple-600 rounded-full w-3 h-3"></div>
-                                </div>
-                                <p>Horror</p>
-                            </label>
-                        </div>
-                        <!-- GENRE DROPDOWN END -->
-                    </button>
-
-                    <button onclick="showCountryDropdown()" type="button"
-                        class="text-\[\#f5f6f8\]] w-40 h-10 px-4 py-2 bg-lightGray rounded-md relative">
-                        <div class="flex justify-between w-full items-center">
-                            Country <i id="CountryDropdownIcon" class="fa-solid fa-caret-down"></i>
-                        </div>
-                        <!-- COUNTRY DROPDOWN START -->
-                        <div id="CountryFilterDropdown"
-                            class="w-[350px] overflow-hidden p-4 absolute hidden left-0 top-12 rounded-md bg-lightGray flex flex-wrap shadow-md">
-                            <input type="checkbox" name="" id="australia">
-                            <label for="australia" class="dropdown flex gap-2 cursor-pointer w-[150px]">
-                                <p>Australia</p>
-                            </label>
-                            <label for="brazil" class="dropdown flex gap-2 cursor-pointer w-[150px]">
-                                <input type="checkbox" name="" id="brazil">
-                                <p>Brazil</p>
-                            </label>
-                        </div>
-                        <!-- COUNTRY DROPDOWN END -->
-                    </button>
-
-                    <button onclick="showYearDropdown()" type="button"
-                        class="text-\[\#f5f6f8\]] w-40 h-10 px-4 py-2 bg-lightGray rounded-md relative">
-                        <div class="flex justify-between w-full items-center">
-                            Year <i id="YearDropdownIcon" class="fa-solid fa-caret-down"></i>
-                        </div>
-                        <!-- YEAR DROPDOWN START -->
-                        <div id="YearFilterDropdown"
-                            class="w-[420px] overflow-hidden p-4 absolute hidden left-0 top-12 rounded-md bg-lightGray flex flex-wrap shadow-md">
-                            <label for="2023" class="flex gap-2 cursor-pointer w-[115px] dropdown">
-                                <input type="checkbox" name="" id="2023">
-                                <p>2023</p>
-                            </label>
-                            <label for="2022" class="flex gap-2 cursor-pointer w-[115px] dropdown">
-                                <input type="checkbox" id="checkbox2022" name="">
-                                <p>2022</p>
-                            </label>
-                        </div>
-                        <!-- YEAR DROPDOWN END -->
-                    </button>
-
-                    <button onclick="showRatingDropdown()" type="button"
-                        class="text-\[\#f5f6f8\]] w-40 h-10 px-4 py-2 bg-lightGray rounded-md relative">
-                        <div class="flex justify-between w-full items-center">
-                            Rating <i id="RatingDropdownIcon" class="fa-solid fa-caret-down"></i>
-                        </div>
-                        <!-- RATING DROPDOWN START -->
-                        <div id="RatingFilterDropdown"
-                            class="w-[420px] overflow-hidden p-4 absolute hidden left-0 top-12 rounded-md bg-lightGray flex flex-wrap shadow-md">
-                            <label for="12" class="flex gap-2 cursor-pointer w-[115px] dropdown">
-                                <input type="checkbox" name="" id="12">
-                                <p>12</p>
-                            </label>
-                            <label for="13plus" class="flex gap-2 cursor-pointer w-[115px] dropdown">
-                                <input type="checkbox" name="" id="13plus">
-                                <p>13+</p>
-                            </label>
-                        </div>
-                        <!-- RATING DROPDOWN END -->
-                    </button>
-
-                    <button type="submit"
-                        class="bg-gradient-to-r from-pink-600 to-purple-600 font-semibold px-2 py-1 rounded-md flex gap-1 items-center h-10 w-32">
+                    <button type="button" onclick="showFilter()" 
+                    class="bg-gradient-to-r from-pink-600 to-purple-600 font-semibold px-2 py-1 rounded-md flex gap-1 items-center h-10 w-32">
                         <i class="fa-solid fa-plus"></i>ADD FILTER
                     </button>
                 </form>
@@ -154,7 +81,8 @@
                 </div>
                 <div class="flex w-[100%] flex-wrap gap-y-6 gap-x-4">
                     <!--  -->
-                    <a href="./detail-movie.php" class="w-[200px] relative z-10">
+                    <?php for ($i=0; $i < 10; $i++) { ?>
+                    <a href="./detail-movie.php" class="w-[200px] relative z-2">
                         <img class="rounded-md shadow-md" src="../img/avengersHD.jpg" width="200" alt="">
                         <div class="min-h-16 h-fit max-w-full">
                             <div class="flex text-sm gap-2">
@@ -165,6 +93,7 @@
                         </div>
                         <p class="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-green-600 px-2 rounded-full font-semibold">8.0</p>
                     </a>
+                    <?php } ?>
                     <!--  -->       
                 </div>
             </div>
@@ -179,6 +108,8 @@
                     <p class="font-bold text-2xl">RECENTLY UPDATED</p>
                 </div>
                 <div class="h-[100vh] w-full rounded-md">
+                    <!--  -->
+                    <?php for ($i=0; $i < 9; $i++) { ?>
                     <a href="./detail-movie.php" class="flex h-[80px] w-full gap-2 bg-lightGray rounded-md mb-4 overflow-hidden hover:bg-darkGray transition-colors duration-200 ease-in-out">
                         <img src="../img/avengersHD.jpg" height="80" alt="">
 
@@ -187,13 +118,14 @@
                             <p class="font-semibold">Avengers: Infinity War</p>
                         </div>
                     </a>
-                    
+                    <?php } ?>
+                    <!--  -->  
                 </div>
             </div>
         </div>
         <!-- RECENTLY UPDATED END -->
     </div>
-
+    
     <!-- PAGINATION START -->
     <div class="w-full flex justify-center items-center h-[20vh]">
         <div class="flex gap-8 items-center">
@@ -216,6 +148,81 @@
     <div class="text-semiWhite">    
         <?php include './components/footer.php'?>
     </div>
+
+    <!-- MODAL START -->
+    <div class="flex justify-center items-center absolute top-0 left-0 h-[100vh] w-[100vw] backdrop-blur-md  transition-opacity duration-300 ease-in-out z-50 hidden opacity-0" id="modalFilter">
+        <div class="bg-lightGray w-[70vw] h-[75vh] p-6 rounded-md shadow-md">
+            <div class= "w-full h-full flex flex-col gap-4">
+                <p class="text-3xl text-semiWhite font-bold">Advanced Search</p>
+                <form action="" method="GET">
+                    <div class="flex flex-col gap-4">
+                        <p class="text-xl text-semiWhite font-bold">Genre</p>
+                        <div  class="flex gap-4 flex-wrap px-4">
+                            <?php for ($i=1; $i < 20; $i++) { ?>
+                            <label for="genre<?= $i ?>" class="flex gap-4 items-center cursor-pointer">
+                                <div class="bg-semiWhite w-4 h-4 flex justify-center items-center rounded-full">
+                                    <div class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 hidden checkedBox"></div>
+                                </div>
+                                <input type="checkbox" id="genre<?= $i ?>" value="drama" name="genre" class="hidden">
+                                <p class="unselectable">Action</p>
+                            </label>
+                            <?php }  ?>
+                        </div>
+                        
+                        <p class="text-xl text-semiWhite font-bold">Country</p>
+                        <div  class="flex gap-4 flex-wrap px-4">
+                            <?php for ($i=1; $i < 10; $i++) { ?>
+                            <label for="genre<?= $i ?>" class="flex gap-4 items-center cursor-pointer">
+                                <div class="bg-semiWhite w-4 h-4 flex justify-center items-center rounded-full">
+                                    <div class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 hidden checkedBox"></div>
+                                </div>
+                                <input type="checkbox" id="genre<?= $i ?>" value="drama" name="genre" class="hidden">
+                                <p class="unselectable">Indonesia</p>
+                            </label>
+                            <?php }  ?>
+                        </div>
+                        
+                        <p class="text-xl text-semiWhite font-bold">Rating</p>
+                        <div  class="flex gap-4 flex-wrap px-4">
+                            <?php for ($i=1; $i < 10; $i++) { ?>
+                            <label for="genre<?= $i ?>" class="flex gap-4 items-center cursor-pointer">
+                                <div class="bg-semiWhite w-4 h-4 flex justify-center items-center rounded-full">
+                                    <div class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 hidden checkedBox"></div>
+                                </div>
+                                <input type="checkbox" id="genre<?= $i ?>" value="drama" name="genre" class="hidden">
+                                <p class="unselectable">5.0</p>
+                            </label>
+                            <?php }  ?>
+                        </div>
+                        
+                        <p class="text-xl text-semiWhite font-bold">Rating</p>
+                        <div  class="flex gap-4 flex-wrap px-4">
+                            <?php for ($i=1; $i < 10; $i++) { ?>
+                            <label for="genre<?= $i ?>" class="flex gap-4 items-center cursor-pointer">
+                                <div class="bg-semiWhite w-4 h-4 flex justify-center items-center rounded-full">
+                                    <div class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 hidden checkedBox"></div>
+                                </div>
+                                <input type="checkbox" id="genre<?= $i ?>" value="drama" name="genre" class="hidden">
+                                <p class="unselectable">PG-13</p>
+                            </label>
+                            <?php }  ?>
+                        </div>
+                        
+                        <div class="flex items-center justify-end w-full px-2 gap-4">
+                            <button onclick="showFilter()" class="border-2 border-gradient-to-r from-pink-600 to-purple-600 px-4 py-1 font-semibold shadow-sm hover:shadow-md shadow-semiBlack hover:shadow-semiBlack  rounded-lg">Cancel</button>
+
+                            <button type="submit" class="bg-gradient-to-r from-pink-600 to-purple-600 px-4 py-1 font-semibold shadow-sm hover:shadow-md shadow-semiBlack hover:shadow-semiBlack  rounded-lg">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- <button onclick="showFilter()" class=" text-semiWhite absolute top-10 right-10 ">
+            <i class="fa-solid fa-xmark"></i>
+        </button> -->
+    </div>
+    <!-- MODAL END -->
 
     <script src="../js/main.js"></script>
 </body>
