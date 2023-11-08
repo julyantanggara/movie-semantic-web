@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:owl="http://www.w3.org/2002/07/owl#"
+        xmlns:dc="http://purl.org/dc/terms/"
+        xmlns:movie="https://example.org/schema/movie">
+        
+    <movie:search rdf:about="http://dbpedia.org/resource/Avatar_(2009_film)">
+        <movie:number>1</movie:number>
+        <rdfs:label>Avatar (2009)</rdfs:label>
+        <movie:abstract>
+                Avatar (also marketed as James Cameron's Avatar) is a 2009 epic science fiction film directed, written, co-produced and co-edited by James Cameron, and starring Sam Worthington, Zoe Saldana, Stephen Lang, Michelle Rodriguez, and Sigourney Weaver. It is set in the mid-22nd century when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi – a humanoid species indigenous to Pandora. The title of the film refers to a genetically engineered Na'vi body operated from the brain of a remotely located human that is used to interact with the natives of Pandora.
+        </movie:abstract>
+        <movie:genre>Science Fiction</movie:genre>
+        <movie:genre>Action</movie:genre>
+        <movie:country>America</movie:country>
+        <movie:rating>9.8</movie:rating>
+        <movie:category>R(restricted)</movie:category>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Avatar_(2009_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/d9MyW72ELq0?si=-oyuNwDIAq2ka_kR"/>
+    </movie:search>
+    
+    <movie:search rdf:about="http://dbpedia.org/resource/Interstellar_(film)">
+        <movie:number>2</movie:number>
+        <rdfs:label>Interstellar</rdfs:label>
+        <movie:abstract>
+                Interstellar is a 2014 epic science-fiction film co-written, directed, and produced by Christoper Nolan. Set in a dystopian future where humanity is struggling to survive, the film follows a group of astronauts who travel through a wormhole near Saturn in search of a new home for mankind.
+        </movie:abstract>
+        <movie:genre>Science Fiction</movie:genre>
+        <movie:country>America</movie:country>
+        <movie:rating>9.8</movie:rating>
+        <movie:category>PG-13</movie:category>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Interstellar"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/zSWdZVtXT7E?si=Dxqul-0iKIvgTPci"/>
+    </movie:search>
+</rdf:RDF>
