@@ -25,7 +25,6 @@
             outline: none;
         }
     </style>
-    </style>
 </head>
 
 <body class="font-Work bg-mainColor text-[#f5f6f8] relative">
@@ -34,50 +33,26 @@
 
     <div class="flex">
         <div class="flex flex-col gap-6 w-[73%]">
-        <!-- FILTER START -->
+        <!-- Search START -->
             <div class="pl-8 pr-6 pt-10 flex flex-col gap-6">
                 <div class="flex items-center gap-2">
-                    <i class="text-2xl gradient-text-light fa-solid fa-sliders"></i>
-                    <p class="font-semibold text-2xl">FILTER</p>
+                    <form action="filter.php" method="GET" class="flex gap-2">
+                        <input type="text" name="search" placeholder="Search..." autocomplete="off" value="<?= $_GET['search'] ?? "" ?>"
+                            class="rounded-md text-\[\#f5f6f8\]] h-10 px-4 py-1 w-[900px] bg-lightGray">
+    
+                        <button type="submit" 
+                        class="bg-gradient-to-r from-pink-600 to-purple-600 font-semibold text-xl px-3 py-1 rounded-md flex items-center justify-center h-10 w-24">Search
+                        </button>
+                    </form>
                 </div>
-                <form action="" method="GET" class="flex gap-2">
-                    <input type="text" name="search" placeholder="Search..." autocomplete="off"
-                        class="rounded-md text-\[\#f5f6f8\]] h-10 px-4 py-1 w-[900px] bg-lightGray">
-
-                    <button type="button" onclick="showFilter()" 
-                    class="bg-gradient-to-r from-pink-600 to-purple-600 font-semibold px-2 py-1 rounded-md flex gap-1 items-center h-10 w-32">
-                        <i class="fa-solid fa-plus"></i>ADD FILTER
-                    </button>
-                </form>
-                <!-- FILTER ADDED START -->
-                <div class="flex flex-wrap gap-2">
-                    <button
-                        class="border-2 border-white font-medium text-sm px-2 py-1 rounded-md flex items-center gap-2">Action
-                        <span class="text-xl">&times;</span></button>
-                    <button
-                        class="border-2 border-white font-medium text-sm px-2 py-1 rounded-md flex items-center gap-2">South
-                        Korea <span class="text-xl">&times;</span></button>
-                    <button
-                        class="border-2 border-white font-medium text-sm px-2 py-1 rounded-md flex items-center gap-2">Indonesia
-                        <span class="text-xl">&times;</span></button>
-                    <button
-                        class="border-2 border-white font-medium text-sm px-2 py-1 rounded-md flex items-center gap-2">2022
-                        <span class="text-xl">&times;</span></button>
-                    <button
-                        class="border-2 border-white font-medium text-sm px-2 py-1 rounded-md flex items-center gap-2">2023
-                        <span class="text-xl">&times;</span></button>
-                    <button class="border-2 border-white font-medium text-sm px-2 py-1 rounded-md flex items-center gap-2">R
-                        <span class="text-xl">&times;</span></button>
-                    <button class="underline">Reset Filter</button>
-                </div>
-                <!-- FILTER ADDED END -->
+                <!-- Search END -->
             </div>
             <!-- FILTER END -->
 
             <!-- CONTENT START -->
             <div class="flex flex-col pl-9 pr-4 gap-6">
                 <div class="flex justify-between w-full items-center">
-                    <p class="text-3xl font-semibold text-semiWhite relative -z-10">Showing result for "Avengers"</p>
+                    <p class="text-3xl font-semibold text-semiWhite relative -z-10">Showing result for "<?= $_GET['search'] ?? "All Movies" ?>"</p>
                 </div>
                 <div class="flex w-[100%] flex-wrap gap-y-6 gap-x-4">
                     <!--  -->

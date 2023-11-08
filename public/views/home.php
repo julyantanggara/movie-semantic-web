@@ -30,17 +30,41 @@ $q='SELECT DISTINCT * WHERE {' .
 
   $result_all = $sparql_jena->query($q);
 
+	$genre_all='SELECT DISTINCT ?genre WHERE {' .
+		'?movie rdf:type movie:search;' .
+		'				movie:genre ?genre;'.
+		'}';
 
+	$genres = $sparql_jena->query($genre_all);
 
-	// foreach ($result as $row) {
-	// 	$wiki = $sparql->query(
-	// 		'SELECT DISTINCT * WHERE {' .
-	// 		'?movie rdfs:label "' . $row->moviename . '" ;'.
-	// 		' 			foaf:isPrimaryTopicOf ?wiki' .
-	// 		'}'
-	// 		);
-	// }
+	$movie_action='SELECT DISTINCT * WHERE {' .
+		'?movie rdf:type movie:search;' .
+		'				movie:genre "Action";'.
+		'				rdfs:label ?moviename;' .
+		'				movie:wiki ?wiki;'.
+		'}';
 
+	$movies_action = $sparql_jena->query($movie_action);
+
+	$movie_horror='SELECT DISTINCT * WHERE {' .
+		'?movie rdf:type movie:search;' .
+		'				movie:genre "Horror";'.
+		'				rdfs:label ?moviename;' .
+		'				movie:wiki ?wiki;'.
+		'}';
+
+	$movies_horror = $sparql_jena->query($movie_horror);
+
+	$jumlah = $sparql_jena->query(
+		'SELECT DISTINCT   (COUNT(*) AS ?jumlah)    WHERE {' .
+			'  ?movie rdf:type movie:search .' .
+			'}'
+	);
+
+	foreach($jumlah as $res)
+      {
+        $moviecount=$res->jumlah;
+      }
 ?>
 
 <!DOCTYPE html>
@@ -140,30 +164,6 @@ $q='SELECT DISTINCT * WHERE {' .
                 </div>
                 <!-- POPULAR MOVIES END -->
 
-                <?php
-                    $genres = [
-                        "Action",
-                        "Comedy",
-                        "Drama",
-                        "Horror",
-                        "Romance",
-                        "Science Fiction",
-                        "Fantasy",
-                        "Thriller",
-                        "Animation",
-                        "Crime",
-                        "Adventure",
-                        "Mystery",
-                        "Family",
-                        "Documentary",
-                        "Musical",
-                        "Western",
-                        "Historical",
-                        "Superhero",
-                        "War"
-                    ];
-                ?>
-
                 <!-- GENRE START -->
                 <div class="flex flex-col items-center gap-10">
                     <p class="text-4xl text-white font-semibold">Genre</p>
@@ -171,7 +171,7 @@ $q='SELECT DISTINCT * WHERE {' .
                         <?php
                             foreach ($genres as $genre) {   
                         ?>
-                        <a class="py-3 px-5 text-xl bg-mainColor text-white font-semibold border-2 border-white rounded-full hover:bg-white hover:text-mainColor transition-colors duration-300 ease-in-out cursor-pointer"><?= $genre ?></a>
+                        <a class="py-3 px-5 text-xl bg-mainColor text-white font-semibold border-2 border-white rounded-full hover:bg-white hover:text-mainColor transition-colors duration-300 ease-in-out cursor-pointer"><?= $genre->genre ?></a>
                         <?php
                             }
                         ?>
@@ -190,11 +190,15 @@ $q='SELECT DISTINCT * WHERE {' .
                             <i class="text-white text-2xl fa-solid fa-chevron-right"></i>
                         </button>
                         <div class="flex flex-nowrap lg:ml-10 md:ml-10 ml-0">
-                            <?php for ($i = 0; $i < 15; $i++) { ?>
+                            <?php foreach($movies_action as $movie) { 
+															\EasyRdf\RdfNamespace::setDefault('og');
+															$wiki= \EasyRdf\Graph::newAndLoad($movie->wiki);
+															$foto_url =$wiki->image;
+															?>
                             <div class="inline-block px-3">
-                                <a href="./detail-movie.php">
+                                <a href="./detail-movie.php?movie=<?= $movie->moviename ?>">
                                     <div class="w-64 h-[370px] max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                                        <img src="../img/avengersHD.jpg" alt="">
+                                        <img src="<?= $foto_url ?>" alt="" width="100%">
                                     </div>
                                 </a>
                             </div>
@@ -215,11 +219,15 @@ $q='SELECT DISTINCT * WHERE {' .
                             <i class="text-white text-2xl fa-solid fa-chevron-right"></i>
                         </button>
                         <div class="flex flex-nowrap lg:ml-10 md:ml-10 ml-0">
-                            <?php for ($i = 0; $i < 15; $i++) { ?>
+												<?php foreach($movies_horror as $movie) { 
+															\EasyRdf\RdfNamespace::setDefault('og');
+															$wiki= \EasyRdf\Graph::newAndLoad($movie->wiki);
+															$foto_url =$wiki->image;
+															?>
                             <div class="inline-block px-3">
-                                <a href="./detail-movie.php">
+                                <a href="./detail-movie.php?movie=<?= $movie->moviename ?>">
                                     <div class="w-64 h-[370px] max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                                        <img src="../img/avengersHD.jpg" alt="">
+                                        <img src="<?= $foto_url ?>" alt="" width="100%">
                                     </div>
                                 </a>
                             </div>
@@ -232,13 +240,10 @@ $q='SELECT DISTINCT * WHERE {' .
             </div>
 
             <div class="h-[60vh] flex flex-col items-center justify-center">
-                <!--  -->
                 <div class="text-semiWhite text-6xl font-bold flex gap-4">
-                    <p class="box" data-duration="3000"> 4000</p>
+                    <p class="box" data-duration="3000"><?= $moviecount ?></p>
                     <p>Data</p>
                 </div>
-                <i class="text-semiWhite">insert text here</i>
-                <!--  -->
             </div>
         </div>
     </main>
