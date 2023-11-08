@@ -6,33 +6,464 @@
         xmlns:owl="http://www.w3.org/2002/07/owl#"
         xmlns:dc="http://purl.org/dc/terms/"
         xmlns:movie="https://example.org/schema/movie">
-        
-    <movie:search rdf:about="http://dbpedia.org/resource/Avatar_(2009_film)">
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Shawshank_Redemption">
         <movie:number>1</movie:number>
-        <rdfs:label>Avatar (2009)</rdfs:label>
-        <movie:abstract>
-                Avatar (also marketed as James Cameron's Avatar) is a 2009 epic science fiction film directed, written, co-produced and co-edited by James Cameron, and starring Sam Worthington, Zoe Saldana, Stephen Lang, Michelle Rodriguez, and Sigourney Weaver. It is set in the mid-22nd century when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi – a humanoid species indigenous to Pandora. The title of the film refers to a genetically engineered Na'vi body operated from the brain of a remotely located human that is used to interact with the natives of Pandora.
-        </movie:abstract>
-        <movie:genre>Science Fiction</movie:genre>
-        <movie:genre>Action</movie:genre>
+        <rdfs:label>The Shawshank Redemption</rdfs:label>
         <movie:country>America</movie:country>
-        <movie:rating>9.8</movie:rating>
+        <movie:year>1994</movie:year>
         <movie:category>R(restricted)</movie:category>
-        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Avatar_(2009_film)"/>
-        <foaf:trailer rdf:resource="https://www.youtube.com/embed/d9MyW72ELq0?si=-oyuNwDIAq2ka_kR"/>
+        <movie:time>2h 22m</movie:time>
+        <movie:abstract>Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.</movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:rating>9.3</movie:rating>
+        <movie:keyword>Tim Robbins</movie:keyword>
+        <movie:keyword>Morgan Freeman</movie:keyword>
+        <movie:keyword>Bob Gunton</movie:keyword>
+        <movie:keyword>Frank Darabont</movie:keyword>
+        <movie:keyword>Frank Darabont</movie:keyword>
+        <movie:keyword>Stephen King</movie:keyword>
+        <movie:keyword>Redemption</movie:keyword>
+        <movie:keyword>Jail</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Shawshank_Redemption"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/PLl99DlL6b4?si=Oht-XhXrxaZqiXDS"/>
     </movie:search>
-    
-    <movie:search rdf:about="http://dbpedia.org/resource/Interstellar_(film)">
+    <movie:search rdf:about="http://dbpedia.org/resource/Forrest_Gump">
         <movie:number>2</movie:number>
-        <rdfs:label>Interstellar</rdfs:label>
-        <movie:abstract>
-                Interstellar is a 2014 epic science-fiction film co-written, directed, and produced by Christoper Nolan. Set in a dystopian future where humanity is struggling to survive, the film follows a group of astronauts who travel through a wormhole near Saturn in search of a new home for mankind.
-        </movie:abstract>
-        <movie:genre>Science Fiction</movie:genre>
+        <rdfs:label>Forrest Gump</rdfs:label>
         <movie:country>America</movie:country>
-        <movie:rating>9.8</movie:rating>
+        <movie:year>1994</movie:year>
+        <movie:category>NC-17</movie:category>
+        <movie:time>2h 22m</movie:time>
+        <movie:abstract>The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.</movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Romance</movie:genre>
+        <movie:rating>8.8</movie:rating>
+        <movie:keyword>Robert Zemeckis</movie:keyword>
+        <movie:keyword>Winston Groom</movie:keyword>
+        <movie:keyword>Eric Roth</movie:keyword>
+        <movie:keyword>Tom Hanks</movie:keyword>
+        <movie:keyword>Robin Wright</movie:keyword>
+        <movie:keyword>Gary Sinise</movie:keyword>
+        <movie:keyword>Forrest</movie:keyword>
+        <movie:keyword>Gump</movie:keyword>
+        <movie:keyword>Journey</movie:keyword>
+        <movie:keyword>Motivation</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Romance</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Forrest_Gump"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/bLvqoHBptjg?si=BtuV7RTqtun9QpzX"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Pursuit_of_Happyness">
+        <movie:number>3</movie:number>
+        <rdfs:label>The Pursuit of Happyness</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2006</movie:year>
         <movie:category>PG-13</movie:category>
-        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Interstellar"/>
+        <movie:time>1h 57m</movie:time>
+        <movie:abstract>A struggling salesman takes custody of his son as he's poised to begin a life-changing professional career.</movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Biography</movie:genre>
+        <movie:rating>8.0</movie:rating>
+        <movie:keyword>Gabriele Muccino</movie:keyword>
+        <movie:keyword>Steve Conrad</movie:keyword>
+        <movie:keyword>Will Smith</movie:keyword>
+        <movie:keyword>Thandiwe Newton</movie:keyword>
+        <movie:keyword>Jaden Smith</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Biography</movie:keyword>
+        <movie:keyword>Motivation</movie:keyword>
+        <movie:keyword>Pursuit</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Happiness</movie:keyword>
+        <movie:keyword>Happyness</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Pursuit_of_Happyness"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/DMOBlEcRuw8?si=Fge-BpFxix2aFL3E"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Ready_Player_One">
+        <movie:number>4</movie:number>
+        <rdfs:label>Ready Player One</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2018</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>2h 20m</movie:time>
+        <movie:abstract>When the creator of a virtual reality called the OASIS dies, he makes a posthumous challenge to all OASIS users to find his Easter Egg, which will give the finder his fortune and control of his world.</movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Sci-Fi</movie:genre>
+        <movie:rating>7.4</movie:rating>
+        <movie:keyword>Steven Spielberg</movie:keyword>
+        <movie:keyword>Zak Penn</movie:keyword>
+        <movie:keyword>Ernest Cline</movie:keyword>
+        <movie:keyword>Tye Sheridan</movie:keyword>
+        <movie:keyword>Olivia Cooke</movie:keyword>
+        <movie:keyword>Ben Mendelsohn</movie:keyword>
+        <movie:keyword>Game</movie:keyword>
+        <movie:keyword>Puzzle</movie:keyword>
+        <movie:keyword>Virtual Reality</movie:keyword>
+        <movie:keyword>Ready</movie:keyword>
+        <movie:keyword>Player</movie:keyword>
+        <movie:keyword>One</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Sci-Fi</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Ready_Player_One_(film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/LiK2fhOY0nE?si=vPDnzOfeQzeZBMSK"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Five_Feet_Apart">
+        <movie:number>5</movie:number>
+        <rdfs:label>Five Feet Apart</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2019</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>1h 56m</movie:time>
+        <movie:abstract>
+            A pair of teenagers with cystic fibrosis meet in a hospital and fall in love, though their disease means they must avoid close physical contact.
+        </movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Romance</movie:genre>
+        <movie:rating>7.2</movie:rating>
+        <movie:keyword>Justin Baldoni</movie:keyword>
+        <movie:keyword>Mikki Daughtry</movie:keyword>
+        <movie:keyword>Tobias Iaconis</movie:keyword>
+        <movie:keyword>Haley Lu Richardson</movie:keyword>
+        <movie:keyword>Cole Sprouse</movie:keyword>
+        <movie:keyword>Moises Arias</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Romance</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Five</movie:keyword>
+        <movie:keyword>Feet</movie:keyword>
+        <movie:keyword>Apart</movie:keyword>
+        <movie:keyword>Teenager</movie:keyword>
+        <movie:keyword>Love</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Five_Feet_Apart"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/XtgCqMZofqM?si=j35F9JWhqj8te0KI"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Men_in_Black_(1997_film)">
+        <movie:number>6</movie:number>
+        <rdfs:label>Men in Black (1997 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>1997</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>1h 38m</movie:time>
+        <movie:abstract>
+            A police officer joins a secret organization that polices and monitors extraterrestrial interactions on Earth.        
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:rating>7.3</movie:rating>
+        <movie:keyword>Barry Sonnenfeld</movie:keyword>
+        <movie:keyword>Lowell Cunningham</movie:keyword>
+        <movie:keyword>Ed Solomon</movie:keyword>
+        <movie:keyword>Tommy Lee Jones</movie:keyword>
+        <movie:keyword>Will Smith</movie:keyword>
+        <movie:keyword>Linda Fiorentino</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Men</movie:keyword>
+        <movie:keyword>Black</movie:keyword>
+        <movie:keyword>Agent</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Men_in_Black_(1997_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/1Q4mhYF9aQQ?si=jM6zWthp0Z6wBumM"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Interstellar_(film)">
+        <movie:number>7</movie:number>
+        <rdfs:label>Interstellar (film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2014</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 49m</movie:time>
+        <movie:abstract>
+        When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Sci-Fi</movie:genre>
+        <movie:rating>8.7</movie:rating>
+        <movie:keyword>Christopher Nolan</movie:keyword>
+        <movie:keyword>Jonathan Nolan</movie:keyword>
+        <movie:keyword>Christopher Nolan</movie:keyword>
+        <movie:keyword>Matthew McConaughey</movie:keyword>
+        <movie:keyword>Anne Hathaway</movie:keyword>
+        <movie:keyword>Jessica Chastain</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Sci-Fi</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Space</movie:keyword>
+        <movie:keyword>Physics</movie:keyword>
+        <movie:keyword>Quantum Physics</movie:keyword>
+        <movie:keyword>Science</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Interstellar_(film)"/>
         <foaf:trailer rdf:resource="https://www.youtube.com/embed/zSWdZVtXT7E?si=Dxqul-0iKIvgTPci"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Avatar_(2009_film)">
+        <movie:number>8</movie:number>
+        <rdfs:label>Avatar (2009 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2009</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 42m</movie:time>
+        <movie:abstract>
+            A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.9</movie:rating>
+        <movie:keyword>James Cameron</movie:keyword>
+        <movie:keyword>Sam Worthington</movie:keyword>
+        <movie:keyword>Zoe Saldana</movie:keyword>
+        <movie:keyword>Sigourney Weaver</movie:keyword>
+        <movie:keyword>Avatar</movie:keyword>
+        <movie:keyword>Blue</movie:keyword>
+        <movie:keyword>Jake Sully</movie:keyword>
+        <movie:keyword>Neytiri</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Avatar_(2009_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/5PSNL1qE6VY?si=BfQUnOGg3wbBAGqQ"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Avatar:_The_Way_of_Water">
+        <movie:number>9</movie:number>
+        <rdfs:label>Avatar: The Way of Water</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2022</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>3h 12m</movie:time>
+        <movie:abstract>
+            Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.6</movie:rating>
+        <movie:keyword>James Cameron</movie:keyword>
+        <movie:keyword>Rick Jaffa</movie:keyword>
+        <movie:keyword>Amanda Silver</movie:keyword>
+        <movie:keyword>Sam Worthington</movie:keyword>
+        <movie:keyword>Zoe Saldana</movie:keyword>
+        <movie:keyword>Sigourney Weaver</movie:keyword>
+        <movie:keyword>Avatar</movie:keyword>
+        <movie:keyword>Way Of Water</movie:keyword>
+        <movie:keyword>Blue</movie:keyword>
+        <movie:keyword>Jake Sully</movie:keyword>
+        <movie:keyword>Neytiri</movie:keyword>
+        <movie:keyword>Neteyam</movie:keyword>
+        <movie:keyword>Tsireya</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Avatar:_The_Way_of_Water"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/d9MyW72ELq0?si=ly1vQ-BI2o91_PH3"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Despicable_Me">
+        <movie:number>10</movie:number>
+        <rdfs:label>Despicable Me</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2010</movie:year>
+        <movie:category>G</movie:category>
+        <movie:time>1h 35m</movie:time>
+        <movie:abstract>
+        When a criminal mastermind uses a trio of orphan girls as pawns for a grand scheme, he finds their love is profoundly changing him for the better.
+        </movie:abstract>
+        <movie:genre>Animation</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:rating>7.6</movie:rating>
+        <movie:keyword>Pierre Coffin</movie:keyword>
+        <movie:keyword>Chris Renaud</movie:keyword>
+        <movie:keyword>Cinco Paul</movie:keyword>
+        <movie:keyword>Ken Daurio</movie:keyword>
+        <movie:keyword>Sergio Pablos</movie:keyword>
+        <movie:keyword>Steve Carell</movie:keyword>
+        <movie:keyword>Jason Segel</movie:keyword>
+        <movie:keyword>Russel Brand</movie:keyword>
+        <movie:keyword>Minion</movie:keyword>
+        <movie:keyword>Gru</movie:keyword>
+        <movie:keyword>Despicable</movie:keyword>
+        <movie:keyword>Yellow</movie:keyword>
+        <movie:keyword>Kuning</movie:keyword>
+        <movie:keyword>Animation</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Despicable_Me"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/zzCZ1W_CUoI?si=b2p9Vd3UzwQz63b-"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Jurassic_World">
+        <movie:number>11</movie:number>
+        <rdfs:label>Jurassic World</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2015</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>2h 4m</movie:time>
+        <movie:abstract>
+        A new theme park, built on the original site of Jurassic Park, creates a genetically modified hybrid dinosaur, the Indominus Rex, which escapes containment and goes on a killing spree.
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Sci-Fi</movie:genre>
+        <movie:rating>6.9</movie:rating>
+        <movie:keyword>Colin Trevorrow</movie:keyword>
+        <movie:keyword>Rick Jaffa</movie:keyword>
+        <movie:keyword>Amanda Silver</movie:keyword>
+        <movie:keyword>Chris Pratt</movie:keyword>
+        <movie:keyword>Bryce Dallas Howard</movie:keyword>
+        <movie:keyword>Ty Simpkins</movie:keyword>
+        <movie:keyword>Dinosaur</movie:keyword>
+        <movie:keyword>Dinosaurus</movie:keyword>
+        <movie:keyword>Velociraptor</movie:keyword>
+        <movie:keyword>T-rex</movie:keyword>
+        <movie:keyword>Jurassic</movie:keyword>
+        <movie:keyword>Park</movie:keyword>
+        <movie:keyword>World</movie:keyword>
+        <movie:keyword>Island</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Sci-Fi</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Jurassic_World"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/RFinNxS5KN4?si=a2sXVerAFFaxVLgr"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Parasite_(2019_film)">
+        <movie:number>12</movie:number>
+        <rdfs:label>Parasite (2019 film)</rdfs:label>
+        <movie:country>Korea</movie:country>
+        <movie:year>2019</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 12m</movie:time>
+        <movie:abstract>
+        Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.
+        </movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Thriller</movie:genre>
+        <movie:rating>8.5</movie:rating>
+        <movie:keyword>Bong Joon Ho</movie:keyword>
+        <movie:keyword>Han Jin-Won</movie:keyword>
+        <movie:keyword>Song Kang-ho</movie:keyword>
+        <movie:keyword>Lee Sun-Kyun</movie:keyword>
+        <movie:keyword>Cho Yeo-jeong</movie:keyword>
+        <movie:keyword>Parasite</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Killer</movie:keyword>
+        <movie:keyword>Basement</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Thriller</movie:keyword>
+        <movie:keyword>Korea</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Parasite_(2019_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/SEUXfv87Wpk?si=GHmMgdAbD5KvI2L0"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Wolf_of_Wall_Street_(2013_film)">
+        <movie:number>13</movie:number>
+        <rdfs:label>The Wolf of Wall Street (2013 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2013</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>3h</movie:time>
+        <movie:abstract>
+        Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.
+        </movie:abstract>
+        <movie:genre>Biography</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:genre>Crime</movie:genre>
+        <movie:rating>8.2</movie:rating>
+        <movie:keyword>Martin Scorsese</movie:keyword>
+        <movie:keyword>Terence Winter</movie:keyword>
+        <movie:keyword>Jordan Belfort</movie:keyword>
+        <movie:keyword>Leonardo DiCaprio</movie:keyword>
+        <movie:keyword>Jonah Hill</movie:keyword>
+        <movie:keyword>Margot Robbie</movie:keyword>
+        <movie:keyword>Wolf</movie:keyword>
+        <movie:keyword>Wall Street</movie:keyword>
+        <movie:keyword>Business</movie:keyword>
+        <movie:keyword>Biography</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Wolf_of_Wall_Street_(film_2013)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/GNGCav9fRhc?si=l2RKS-m7wfk2G-tK"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Imitation_Game">
+        <movie:number>14</movie:number>
+        <rdfs:label>The Imitation Game</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2014</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>1h 54m</movie:time>
+        <movie:abstract>
+        During World War II, the English mathematical genius Alan Turing tries to crack the German Enigma code with help from fellow mathematicians while attempting to come to terms with his troubled private life.
+        </movie:abstract>
+        <movie:genre>Biography</movie:genre>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Thriller</movie:genre>
+        <movie:rating>8.0</movie:rating>
+        <movie:keyword>Morten Tyldum</movie:keyword>
+        <movie:keyword>Graham Moore</movie:keyword>
+        <movie:keyword>Andrew Hodges</movie:keyword>
+        <movie:keyword>Benedict Cumberbatch</movie:keyword>
+        <movie:keyword>Keira Knightley</movie:keyword>
+        <movie:keyword>Matthew Goode</movie:keyword>
+        <movie:keyword>Imitation</movie:keyword>
+        <movie:keyword>Imitation_Game</movie:keyword>
+        <movie:keyword>Game</movie:keyword>
+        <movie:keyword>Enigma</movie:keyword>
+        <movie:keyword>Programming</movie:keyword>
+        <movie:keyword>Computer</movie:keyword>
+        <movie:keyword>War</movie:keyword>
+        <movie:keyword>World War</movie:keyword>
+        <movie:keyword>Biography</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Thriller</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Imitation_Game"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/nuPZUUED5uk?si=ZFqoFEhfAWS1HVuk"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Photocopier_(film)">
+        <movie:number>15</movie:number>
+        <rdfs:label>Photocopier (film)</rdfs:label>
+        <movie:country>Indonesia</movie:country>
+        <movie:year>2021</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 10m</movie:time>
+        <movie:abstract>
+        After losing her scholarship when photos of her at a party surface online, a student pairs with a photocopy worker to piece together what happened.
+        </movie:abstract>
+        <movie:genre>Crime</movie:genre>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Mystery</movie:genre>
+        <movie:rating>6.8</movie:rating>
+        <movie:keyword>Wregas Bhantuteja</movie:keyword>
+        <movie:keyword>Henricus Pria</movie:keyword>
+        <movie:keyword>Shenina Cinnamon</movie:keyword>
+        <movie:keyword>Dea Panendra</movie:keyword>
+        <movie:keyword>Giulio Parengkuan</movie:keyword>
+        <movie:keyword>Penyalin Cahaya</movie:keyword>
+        <movie:keyword>Fotokopi</movie:keyword>
+        <movie:keyword>Penyalin</movie:keyword>
+        <movie:keyword>fotokopier</movie:keyword>
+        <movie:keyword>photocopy</movie:keyword>
+        <movie:keyword>Cahaya</movie:keyword>
+        <movie:keyword>Sekolah</movie:keyword>
+        <movie:keyword>School</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Mystery</movie:keyword>
+        <movie:keyword>Indonesia</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Photocopier_(film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/mjhGJ2g1NCQ?si=TAzRE_avQf8OyfoH"/>
     </movie:search>
 </rdf:RDF>
