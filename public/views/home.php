@@ -24,9 +24,9 @@ $q='SELECT DISTINCT * WHERE {' .
 		'				movie:wiki ?wiki;'.
 		'				movie:rating ?rating;'.
 		'				movie:category ?category;' .
-		// '				movie:genre ?genre;'.
+		'				movie:year ?year;'.
 		'				movie:country ?country'.
-    '}';
+    '} ORDER BY DESC(?rating)';
 
   $result_all = $sparql_jena->query($q);
 
@@ -46,14 +46,14 @@ $q='SELECT DISTINCT * WHERE {' .
 
 	$movies_action = $sparql_jena->query($movie_action);
 
-	$movie_horror='SELECT DISTINCT * WHERE {' .
+	$movie_Drama='SELECT DISTINCT * WHERE {' .
 		'?movie rdf:type movie:search;' .
-		'				movie:genre "Horror";'.
+		'				movie:genre "Drama";'.
 		'				rdfs:label ?moviename;' .
 		'				movie:wiki ?wiki;'.
 		'}';
 
-	$movies_horror = $sparql_jena->query($movie_horror);
+	$movies_Drama = $sparql_jena->query($movie_Drama);
 
 	$jumlah = $sparql_jena->query(
 		'SELECT DISTINCT   (COUNT(*) AS ?jumlah)    WHERE {' .
@@ -102,7 +102,6 @@ $q='SELECT DISTINCT * WHERE {' .
 							'}';
 					
 						$result_genre = $sparql_jena->query($genre);
-						print_r($result_genre);
 					?>
             <a href="./detail-movie.php?movie=<?= $res->moviename ?>">
                 <div class="w-[100vw] h-[65vh] relative">
@@ -117,6 +116,7 @@ $q='SELECT DISTINCT * WHERE {' .
                                     <p><?= $res->rating ?></p>
                                 </div>
                                 <p><?= $res->category ?></p>
+                                <p><?= $res->year ?></p>
 																<?php foreach($result_genre as $genre) : ?>
                                 <p><?= $genre->genre ?></p>
 																<?php endforeach?>
@@ -150,7 +150,6 @@ $q='SELECT DISTINCT * WHERE {' .
 																$wiki= \EasyRdf\Graph::newAndLoad($res->wiki);
 																$foto_url =$wiki->image;
 															?>
-
                             <div class="inline-block px-3">
                                 <a href="./detail-movie.php?movie=<?= $res->moviename ?>">
                                     <div class="w-64 h-[370px] max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
@@ -208,8 +207,8 @@ $q='SELECT DISTINCT * WHERE {' .
                 </div>
                 <!-- ACTION MOVIES END -->
                 
-                <!-- HORROR MOVIES START -->
-                <p class="text-4xl text-white font-semibold">Horror Movies</p>
+                <!-- Drama MOVIES START -->
+                <p class="text-4xl text-white font-semibold">Drama Movies</p>
                 <div class="w-full relative">
                     <div class="flex overflow-x-scroll3 pb-10 hide-scroll-bar">
                         <button class="scroll-button left bg-mainColor bg-opacity-60 h-full flex items-center justify-center" id="scrollLeft3">
@@ -219,7 +218,7 @@ $q='SELECT DISTINCT * WHERE {' .
                             <i class="text-white text-2xl fa-solid fa-chevron-right"></i>
                         </button>
                         <div class="flex flex-nowrap lg:ml-10 md:ml-10 ml-0">
-												<?php foreach($movies_horror as $movie) { 
+												<?php foreach($movies_Drama as $movie) { 
 															\EasyRdf\RdfNamespace::setDefault('og');
 															$wiki= \EasyRdf\Graph::newAndLoad($movie->wiki);
 															$foto_url =$wiki->image;
@@ -235,7 +234,7 @@ $q='SELECT DISTINCT * WHERE {' .
                         </div>
                     </div>
                 </div>
-                <!-- HORROR MOVIES END -->
+                <!-- Drama MOVIES END -->
 
             </div>
 
