@@ -23,6 +23,18 @@ $director='SELECT DISTINCT ?director WHERE {' .
 
 $result_director = $sparql->query($director);
 
+$abstract='SELECT DISTINCT ?abstract WHERE {' .
+    '?movie rdfs:label "'. $_GET['movie'] .'"@en .' .
+    '?movie dbo:abstract ?abstract .'.
+    'FILTER langMatches (lang(?abstract),"EN")' .
+    '}';
+
+$result_abstract = $sparql->query($abstract);
+
+foreach ($result_abstract as $abs) {
+    $abstract = $abs->abstract;
+}
+
 $writer='SELECT DISTINCT ?writer WHERE {' .
     '?movie rdfs:label "'. $_GET['movie'] .'"@en .' .
     '?movie dbo:writer ?writer .'.
@@ -45,8 +57,9 @@ $result_starring = $sparql->query($starring);
         '		movie:rating ?rating;'.
         '		movie:category ?category;' .
         '		movie:country ?country;'.
-        '       foaf:trailer ?trailer' .
-        // '		movie:genre ?genre;'.
+        '       foaf:trailer ?trailer;' .
+        '		movie:year ?year;'.
+        '       movie:time ?time .'. 
         '}';
 
     $result_all = $sparql_jena->query($q);
@@ -62,6 +75,8 @@ $result_starring = $sparql->query($starring);
             "trailer"=>$row->trailer ??null,
             "abstract"=>$row->abstract??null,
             "country"=>$row->country??null,
+            "year" => $row->year ?? null,   
+            "time"=> $row->time ?? null,
         ];
         break;
     }
@@ -105,11 +120,11 @@ $result_starring = $sparql->query($starring);
             <div class="flex flex-col gap-4">
                 <p class="text-5xl font-bold text-semiWhite"><?= $details['moviename'] ?></p>
                 <div class="text-sm font-light text-semiWhite flex gap-2">
-                    <p>2018</p>
+                    <p><?= $details['year'] ?></p>
                     <span>&#x2022;</span>
                     <p><?= $details['category'] ?></p>
                     <span>&#x2022;</span>
-                    <p>2h 29m</p>
+                    <p><?= $details['time'] ?></p>
                     <span>&#x2022;</span>
                     <p><?= $details['country'] ?></p>
                 </div>
@@ -134,7 +149,7 @@ $result_starring = $sparql->query($starring);
             <?php endforeach ?>
         </div>
 
-        <p class="text-semiWhite text-lg"><?= $details['abstract'] ?></p>
+        <p class="text-semiWhite text-lg"><?= substr($abstract, 0, 600) . "..."?></p>
 
         <div class="">
             <div class="flex gap-4 text-semiWhite border-top">
