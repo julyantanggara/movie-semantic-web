@@ -1,7 +1,7 @@
     <!-- NAVBAR START -->
     <nav class=" w-full z-40 transition duration-200 ease-in-out">
         <div class="py-6 px-8 flex justify-between items-center w-full">
-            <a href="./index.php" class="text-2xl font-bold gradient-text-light">MOVΛ</a>
+            <a href="{{ url_for('display_index') }}" class="text-2xl font-bold gradient-text-light">MOVΛ</a>
 
             <div class="flex gap-4 items-center">
                 <button type="button" onclick="showSearch()" class="text-[#f5f6f8]">
@@ -14,7 +14,7 @@
                     </svg>
                 </button>
 
-                <a href="./home.php" class="text-semiWhite relative inline-block hover:before:w-full before:block before:bg-black dark:before:bg-[#d1d5db] before:absolute before:inset-x-0 before:left-0 before:bottom-[-2px] before:w-0 before:h-[1px] before:transition-width before:duration-300">Home</a>
+                <a href="{{ url_for('display_rdf_data') }}" class="text-semiWhite relative inline-block hover:before:w-full before:block before:bg-black dark:before:bg-[#d1d5db] before:absolute before:inset-x-0 before:left-0 before:bottom-[-2px] before:w-0 before:h-[1px] before:transition-width before:duration-300">Home</a>
             </div>
 
 
