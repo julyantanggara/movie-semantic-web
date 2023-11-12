@@ -1,79 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
     <title>{{ role.capitalize() if role else 'Profile' }} Profile | {{ name }}</title>
 </head>
 
 <body class="font-Work transition-colors bg-semiWhite">
-    
+
     <div class="w-full bg-mainColor">
         {% include 'components/navbar.html' %}
     </div>
-    {% macro display_details(details, role) %}
-    {% for detail in details %}
+    {% macro display_details(details,role) %}
     <div class="profile-radius bg-mainColor h-[50vh] flex flex-col gap-8 justify-center items-center">
-        <img class="rounded-full w-40 h-40 object-cover"
-        src="{{ detail.image_url }}" alt="">
+        <img class="rounded-full w-40 h-40 object-cover" src="{{ details[0].image_url }}" alt="">
         <div class="flex flex-col items-center gap-2 relative w-full">
             <p class="text-4xl text-semiWhite font-bold">{{ name }}</p>
             <p class="text-xl text-semiWhite opacity-50">{{ role.capitalize() }}</p>
-            <p class="text-lg text-semiWhite opacity-50 flex items-center gap-1 cursor-pointer" id="location"><i class="fa-solid fa-location-dot"></i> USA</p>
+            <p class="text-lg text-semiWhite opacity-50 flex items-center gap-1 cursor-pointer" id="location"><i
+                    class="fa-solid fa-location-dot"></i> USA</p>
 
             <div class="absolute -bottom-40 right-60 bg-transparent justify-end hidden w-[500px]" id="map">
                 <div class="bg-semiWhite p-2 shadow-lg rounded-md ">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21227025.39328672!2d-103.285865!3d49.499813!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sIndonesia!5e0!3m2!1sid!2sid!4v1698634959917!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21227025.39328672!2d-103.285865!3d49.499813!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sIndonesia!5e0!3m2!1sid!2sid!4v1698634959917!5m2!1sid!2sid"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="px-72 py-8 flex flex-col gap-14">
         <div class="gap-4 flex flex-col">
             <div class="text-mainColor flex gap-2 items-center text-3xl">
                 <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
                 <p class="font-bold">Mini Bio</p>
             </div>
-        
+
             <div class="">
-                    <p>{{ detail.abstract }}</p>
-            </div>        
+                <p>{{ details[0].abstract }}</p>
+            </div>
         </div>
-        
+
         <div class="gap-4 flex flex-col">
             <div class="text-mainColor flex gap-2 items-center text-3xl">
                 <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
                 <p class="font-bold">Overview</p>
             </div>
-        
+
             <div class="">
                 <div class="border-bottom flex gap-4 h-[50px]">
                     <p class="font-bold">Born</p>
-                    <p class="name">{{ detail.birthDate }} · {{ detail.birthPlace }}</p>
+                    <p class="name">{{ details[0].birthDate }} · {{ details[0].birthPlace }}</p>
                 </div>
                 <div class="border-bottom flex gap-4 h-[50px]">
                     <p class="font-bold">Birth name</p>
-                    <p class="name">Chris Evans</p>
+                    <p class="name">{{ details[0].birthName }}</p>
                 </div>
-                <div class="border-bottom flex gap-4 h-[50px]">
-                    <p class="font-bold">Nickname</p>
-                    <p class="name">Cevans</p>
-                </div>
-                <div class="border-bottom flex gap-4 h-[50px]">
-                    <p class="font-bold">Age</p>
-                    <p class="name">42</p>
-                </div>
-                <div class="border-bottom flex gap-4 h-[50px]">
-                    <p class="font-bold">Height</p>
-                    <p class="name">6′ (1.83 m)</p>
-                </div>
-            </div>        
+            </div>
         </div>
-        
+
         <div class="gap-4 flex flex-col">
             <div class="text-mainColor flex gap-2 items-center text-3xl">
                 <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
@@ -81,71 +72,23 @@
             </div>
 
             <div class="">
+                {% for detail in details %}
                 <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Captain America: The Winter Soldier</a>
-                    <p class="name">2014</p>
+                    <p class="font-bold hover:underline">{{ detail.movieLabel }}</p>
+                    <p class="name">{{ detail.movieRelease[:4] }}</p>
                 </div>
+                {% endfor %}
 
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">The Avengers</a>
-                    <p class="name">2012</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Captain America: Civil War</a>
-                    <p class="name">2016</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Snowpiercer</a>
-                    <p class="name">2013</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Scott Pilgrim vs. The World</a>
-                    <p class="name">2010</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Knives Out</a>
-                    <p class="name">2019</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Captain America: The First Avenger</a>
-                    <p class="name">2011</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Avengers: Endgame</a>
-                    <p class="name">2019</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Fantastic Four</a>
-                    <p class="name">2005</p>
-                </div>
-
-                <div class="border-bottom flex gap-4 h-[50px] justify-between">
-                    <a href="./detail-actor.php" class="font-bold hover:underline">Sunshine</a>
-                    <p class="name">2007</p>
-                </div>
-            </div>        
+            </div>
         </div>
-        {% endfor %}
-        
     </div>
     {% endmacro %}
-    {% if "director_details" in display %}
-        {{ display_details(display.director_details, 'director') }}
-    {% endif %}
-
-    {% if "actor_details" in display %}
-        {{ display_details(display.actor_details, 'actor') }}
-    {% endif %}
-
-    {% if "writer_details" in display %}
-        {{ display_details(display.writer_details, 'writer') }}
+    {% if role == "director" %}
+        {{ display_details(display.director_details, role) }}
+    {% elif role == "actor" %}
+        {{ display_details(display.actor_details, role) }}
+    {% elif role == "writer" %}
+        {{ display_details(display.writer_details, role) }}
     {% endif %}
     <div class="text-mainColor">
         {% include 'components/footer.html' %}
@@ -165,4 +108,5 @@
     </script>
     <script src="../js/main.js"></script>
 </body>
+
 </html>

@@ -625,7 +625,7 @@
         <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire"/>
         <foaf:trailer rdf:resource="https://www.youtube.com/embed/4xkFJgcCQRE?si=fGm40GmxNcP7Er4o"/>
     </movie:search>
-    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Goblet_of_Fire_(film)">
+    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Order_of_the_Phoenix">
         <movie:number>20</movie:number>
         <rdfs:label>Harry Potter and the Order of the Phoenix (film)</rdfs:label>
         <movie:country>United Kingdom</movie:country>

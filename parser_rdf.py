@@ -1,7 +1,6 @@
 #module framework flask
 from flask import Flask, render_template,request
 #module untuk keperluan web scrapping
-import re
 import requests
 from bs4 import BeautifulSoup
 #module rdflib dan sparqlwrapper
@@ -35,19 +34,16 @@ g.bind("prov",prov)
 #set up SPARQL endpoint dbpedia
 sparql = SPARQLWrapper("http://dbpedia.org/sparql")
 
-
-# web scrapping menggunakan module BeautifulSoup
+#mendapatkan OGP menggunakan metode web scrapping
 def get_wikilink_image_url(wikilink):
     url = wikilink
-    page = requests.get(url).text
-    soup = BeautifulSoup(page, 'html.parser')
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Mencari semua tag img dengan class tertentu
-    for raw_img in soup.find_all('img',class_='mw-file-element'):
-        link = raw_img.get('src')
-        if  re.findall('wikipedia/.*/thumb/', link) and not re.search('.svg', link):
-            image_url = link
-            return image_url
+    # Extract informasi OGP
+    image_url = soup.find('meta', property='og:image')['content']
+
+    return image_url
     
 #route awal
 @app.route('/')
@@ -124,7 +120,7 @@ def display_rdf_data():
     for res in movie_count_results:
         moviecount = res['jumlah']
 
-    #krn banyak row, declare menjadi array terlebih dahulu
+    #membuat array untuk menyimpan data hasil query diatas 
     data_to_display = {
         'movies_all': [],
         'movies_action': [],
@@ -142,7 +138,7 @@ def display_rdf_data():
         category = row['category']
         year = row['year']
         country = row['country']
-
+        #dari data wiki, memanggil function untuk scrapping image di situs tsb
         image_url = get_wikilink_image_url(wiki)
 
         data_to_display['movies_all'].append({
@@ -227,7 +223,7 @@ def movie_detail(moviename):
     result_writer = sparql.query().convert()
     writer = [row['writer']['value'].replace("http://dbpedia.org/resource/", "") for row in result_writer["results"]["bindings"]]
 
-    # query writer
+    # query starring
     starring_query = '''
         SELECT DISTINCT ?starring WHERE {
             ?movie rdfs:label "'''+moviename+'''"@en .
@@ -294,18 +290,27 @@ def detail_page(role, name):
     original_string = name
     converted_string = original_string.replace('_', ' ')
 
-    display = {}
+    display = {
+        "director_details": [],
+        "actor_details": [],
+        "writer_details": [],
+    }
 
     if role == "director":
         director_query = '''
             SELECT DISTINCT * WHERE {
+            ?movie dbo:director ?director.
                 ?director rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
                 dbo:birthDate ?birthDate;
                 dbp:birthPlace ?birthPlace;
-                prov:wasDerivedFrom ?wiki
-            FILTER langMatches (lang(?abstract),"EN")
+                dbo:birthName ?birthName;
+                prov:wasDerivedFrom ?wiki.
+            ?movie rdfs:label ?movieLabel;
+                dbo:releaseDate ?movieRelease.
+            FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
             }
+            LIMIT 5
         '''
         sparql.setQuery(director_query)
         sparql.setReturnFormat(JSON)
@@ -316,6 +321,9 @@ def detail_page(role, name):
                 "abstract": row.get("abstract", {}).get("value", ""),
                 "birthDate": row.get("birthDate", {}).get("value", ""),
                 "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                "birthName": row.get("birthName", {}).get("value", ""),
+                "movieLabel": row.get("movieLabel", {}).get("value", ""),
+                "movieRelease": row.get("movieRelease", {}).get("value", ""),
                 "wiki": row.get("wiki", {}).get("value", ""),
             }
 
@@ -330,13 +338,18 @@ def detail_page(role, name):
     elif role == "actor":
         actor_query = '''
             SELECT DISTINCT * WHERE {
+            ?movie dbo:starring ?actor.
             ?actor rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
                 dbo:birthDate ?birthDate;
                 dbp:birthPlace ?birthPlace;
-                prov:wasDerivedFrom ?wiki
-            FILTER langMatches (lang(?abstract),"EN")
+                dbo:birthName ?birthName;
+                prov:wasDerivedFrom ?wiki.
+            ?movie rdfs:label ?movieLabel;
+                         dbo:releaseDate ?movieRelease.
+           FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
             }
+            LIMIT 5
         '''
         sparql.setQuery(actor_query)
         sparql.setReturnFormat(JSON)
@@ -349,6 +362,9 @@ def detail_page(role, name):
                 "abstract": row.get("abstract", {}).get("value", ""),
                 "birthDate": row.get("birthDate", {}).get("value", ""),
                 "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                "birthName": row.get("birthName", {}).get("value", ""),
+                "movieLabel": row.get("movieLabel", {}).get("value", ""),
+                "movieRelease": row.get("movieRelease", {}).get("value", ""),
                 "wiki": row.get("wiki", {}).get("value", ""),
             }
             if actor_detail["wiki"]:
@@ -362,13 +378,20 @@ def detail_page(role, name):
     elif role == "writer":
         writer_query = '''
             SELECT DISTINCT * WHERE {
+            ?movie dbo:writer ?writer.
             ?writer rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
                 dbo:birthDate ?birthDate;
                 dbp:birthPlace ?birthPlace;
-                prov:wasDerivedFrom ?wiki
-            FILTER langMatches (lang(?abstract),"EN")
+                prov:wasDerivedFrom ?wiki.
+            ?movie rdfs:label ?movieLabel;
+                dbo:releaseDate ?movieRelease.
+            OPTIONAL {
+                ?writer dbo:birthName ?birthName.
             }
+           FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
+            }
+            LIMIT 5
         '''
         sparql.setQuery(writer_query)
         sparql.setReturnFormat(JSON)
@@ -381,6 +404,9 @@ def detail_page(role, name):
                 "abstract": row.get("abstract", {}).get("value", ""),
                 "birthDate": row.get("birthDate", {}).get("value", ""),
                 "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                "birthName": row.get("birthName", {}).get("value", ""),
+                "movieLabel": row.get("movieLabel", {}).get("value", ""),
+                "movieRelease": row.get("movieRelease", {}).get("value", ""),
                 "wiki": row.get("wiki", {}).get("value", ""),
             }
             if writer_detail["wiki"]:
@@ -394,8 +420,7 @@ def detail_page(role, name):
 
 @app.route('/query', methods=['GET','POST'])
 def process_form():
-    user_input = request.args.get('search', '').capitalize()
-
+    user_input = request.args.get('search', '').title()
     search_query = '''
         SELECT DISTINCT * WHERE {
             ?movie rdf:type movie:search;
