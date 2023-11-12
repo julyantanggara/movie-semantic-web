@@ -18,6 +18,20 @@ dbp = Namespace ("http://dbpedia.org/property/")
 rdf = Namespace ("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 rdfs= Namespace ("http://www.w3.org/2000/01/rdf-schema#")
 foaf = Namespace("http://xmlns.com/foaf/0.1/")
+prov = Namespace("http://www.w3.org/ns/prov#") 
+
+#untuk mova.rdf
+g = Graph()
+g.parse("mova.rdf", format="xml")
+
+#untuk mencegah tidak terbacanya prefix
+g.bind("dbo", dbo)
+g.bind("rdfs", rdfs)
+g.bind("prov",prov)
+
+#set up SPARQL endpoint dbpedia
+sparql = SPARQLWrapper("http://dbpedia.org/sparql")
+
 
 # web scrapping menggunakan module BeautifulSoup
 def get_wikilink_image_url(wikilink):
@@ -38,9 +52,6 @@ def display_index():
 #route home
 @app.route('/home')
 def display_rdf_data():
-    g = Graph()
-    g.parse("mova.rdf", format="xml")
-
     # query semua movie
     query = """
     SELECT DISTINCT * WHERE {
@@ -108,7 +119,7 @@ def display_rdf_data():
     for res in movie_count_results:
         moviecount = res['jumlah']
 
-    #krn banyak row, jadi declare menjadi array terlebih dahulu
+    #krn banyak row, declare menjadi array terlebih dahulu
     data_to_display = {
         'movies_all': [],
         'movies_action': [],
@@ -117,7 +128,7 @@ def display_rdf_data():
         'moviecount': moviecount,
     }
 
-    #krn dari dijlankan 1 query, pisahkan masing menjadi sebuah variable
+    #berasal dari 1 query, pisahkan masing2 menjadi sebuah variable
     for row in results:
         moviename = row['moviename']
         abstract = row['abstract']
@@ -186,21 +197,12 @@ def display_rdf_data():
 #fungsinya sama seperti movie?=... 
 @app.route('/detail-movie/<string:moviename>')
 def movie_detail(moviename):
-    #untuk mova.rdf
-    g = Graph()
-    g.parse("mova.rdf", format="xml")
-    g.bind("dbo", dbo)
-    g.bind("rdfs", rdfs)
-
-    #set up SPARQL endpoint dbpedia
-    sparql = SPARQLWrapper("http://dbpedia.org/sparql")
-
     # query director
     director_query = '''
-    SELECT DISTINCT ?director WHERE {
-        ?movie rdfs:label "'''+moviename+'''"@en;
-            dbo:director ?director .
-    }
+        SELECT DISTINCT ?director WHERE {
+            ?movie rdfs:label "'''+moviename+'''"@en;
+                dbo:director ?director .
+        }
     '''
     sparql.setQuery(director_query)
     sparql.setReturnFormat(JSON)
@@ -282,6 +284,211 @@ def movie_detail(moviename):
 
     return render_template('detail-movie.html', details=details)
 
+@app.route('/detail/<string:role>/<string:name>')
+def detail_page(role, name):
+    original_string = name
+    converted_string = original_string.replace('_', ' ')
 
+    display = {}
+
+    if role == "director":
+        director_query = '''
+            SELECT DISTINCT * WHERE {
+                ?director rdfs:label "'''+converted_string+'''"@en;
+                dbo:abstract ?abstract;
+                dbo:birthDate ?birthDate;
+                dbp:birthPlace ?birthPlace;
+                prov:wasDerivedFrom ?wiki
+            FILTER langMatches (lang(?abstract),"EN")
+            }
+        '''
+        sparql.setQuery(director_query)
+        sparql.setReturnFormat(JSON)
+        result_director = sparql.query().convert()
+        director_details = []
+        for row in result_director["results"]["bindings"]:
+            director_detail = {
+                "abstract": row.get("abstract", {}).get("value", ""),
+                "birthDate": row.get("birthDate", {}).get("value", ""),
+                "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                "wiki": row.get("wiki", {}).get("value", ""),
+            }
+
+            if director_detail["wiki"]:
+                wiki_url = director_detail["wiki"]
+                image_url = get_wikilink_image_url(wiki_url)
+                director_detail["image_url"] = image_url
+
+            director_details.append(director_detail)
+        display["director_details"] = director_details
+
+    elif role == "actor":
+        actor_query = '''
+            SELECT DISTINCT * WHERE {
+            ?actor rdfs:label "'''+converted_string+'''"@en;
+                dbo:abstract ?abstract;
+                dbo:birthDate ?birthDate;
+                dbp:birthPlace ?birthPlace;
+                prov:wasDerivedFrom ?wiki
+            FILTER langMatches (lang(?abstract),"EN")
+            }
+        '''
+        sparql.setQuery(actor_query)
+        sparql.setReturnFormat(JSON)
+        result_actor = sparql.query().convert()
+
+        # Extracting the actor details
+        actor_details = []
+        for row in result_actor["results"]["bindings"]:
+            actor_detail = {
+                "abstract": row.get("abstract", {}).get("value", ""),
+                "birthDate": row.get("birthDate", {}).get("value", ""),
+                "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                "wiki": row.get("wiki", {}).get("value", ""),
+            }
+            if actor_detail["wiki"]:
+                wiki_url = actor_detail["wiki"]
+                image_url = get_wikilink_image_url(wiki_url)
+                actor_detail["image_url"] = image_url
+
+            actor_details.append(actor_detail)
+        display["actor_details"] = actor_details
+
+    elif role == "writer":
+        writer_query = '''
+            SELECT DISTINCT * WHERE {
+            ?writer rdfs:label "'''+converted_string+'''"@en;
+                dbo:abstract ?abstract;
+                dbo:birthDate ?birthDate;
+                dbp:birthPlace ?birthPlace;
+                prov:wasDerivedFrom ?wiki
+            FILTER langMatches (lang(?abstract),"EN")
+            }
+        '''
+        sparql.setQuery(writer_query)
+        sparql.setReturnFormat(JSON)
+        result_writer = sparql.query().convert()
+
+        # Extracting the actor details
+        writer_details = []
+        for row in result_writer["results"]["bindings"]:
+            writer_detail = {
+                "abstract": row.get("abstract", {}).get("value", ""),
+                "birthDate": row.get("birthDate", {}).get("value", ""),
+                "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                "wiki": row.get("wiki", {}).get("value", ""),
+            }
+            if writer_detail["wiki"]:
+                wiki_url = writer_detail["wiki"]
+                image_url = get_wikilink_image_url(wiki_url)
+                writer_detail["image_url"] = image_url
+
+            writer_details.append(writer_detail)
+        display["writer_details"] = writer_details
+    return render_template('profile.html', display=display,role=role,name=converted_string)
+
+@app.route('/filter?<string:type>=<string:desc>')
+def filter(type,desc):
+    if type == "search":
+        search_query = '''
+        SELECT DISTINCT * WHERE {
+            ?movie rdf:type movie:search;
+                movie:keyword "''' +desc+'''";
+                rdfs:label ?moviename;
+                movie:wiki ?wiki
+        }
+        '''
+
+        search_movie = g.query(search_query)
+    elif type == "genre":
+        filter_query = '''
+        SELECT DISTINCT * WHERE {
+            ?movie rdf:type movie:search;
+                movie:genre "'''+desc+'''"
+        }
+        '''
+
+        genre_filter = g.query(filter_query)
+        movies_drama = g.query(movie_drama_query)
+        genres = g.query(genre_all_query)
+        movie_count_results = g.query(movie_count_query)
+
+    #menghitung jumlah movie
+    moviecount = 0
+    for res in movie_count_results:
+        moviecount = res['jumlah']
+
+    #krn banyak row, declare menjadi array terlebih dahulu
+    data_to_display = {
+        'movies_all': [],
+        'movies_action': [],
+        'movies_drama': [],
+        'genres': [row['genre'] for row in genres],
+        'moviecount': moviecount,
+    }
+
+    #berasal dari 1 query, pisahkan masing2 menjadi sebuah variable
+    for row in results:
+        moviename = row['moviename']
+        abstract = row['abstract']
+        wiki = row['wiki']
+        rating = row['rating']
+        category = row['category']
+        year = row['year']
+        country = row['country']
+
+        image_url = get_wikilink_image_url(wiki)
+
+        data_to_display['movies_all'].append({
+            'moviename': moviename,
+            'abstract': abstract,
+            'wiki': wiki,
+            'rating': rating,
+            'category': category,
+            'year': year,
+            'country': country,
+            'image_url': image_url
+        })
+
+    for row in movies_action:
+        moviename = row['moviename']
+        wiki = row['wiki']
+        rating = row['rating']
+        category = row['category']
+        year = row['year']
+        country = row['country']
+
+        image_url = get_wikilink_image_url(wiki)
+
+        data_to_display['movies_action'].append({
+            'moviename': moviename,
+            'wiki': wiki,
+            'rating': rating,
+            'category': category,
+            'year': year,
+            'country': country,
+            'image_url': image_url
+        })
+
+    for row in movies_drama:
+        moviename = row['moviename']
+        wiki = row['wiki']
+        rating = row['rating']
+        category = row['category']
+        year = row['year']
+        country = row['country']
+
+        image_url = get_wikilink_image_url(wiki)
+
+        data_to_display['movies_drama'].append({
+            'moviename': moviename,
+            'wiki': wiki,
+            'rating': rating,
+            'category': category,
+            'year': year,
+            'country': country,
+            'image_url': image_url
+        })
+    return render_template('filter.html',filtering=filtering)
 if __name__ == '__main__':
     app.run()

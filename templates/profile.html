@@ -1,95 +1,27 @@
-<?php 
-require_once realpath(__DIR__ . '../../../') . "/vendor/autoload.php";
-
-// Setup some additional prefixes for DBpedia
-\EasyRdf\RdfNamespace::set('dbc', 'http://dbpedia.org/resource/Category:');
-\EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
-\EasyRdf\RdfNamespace::set('dbpedia', 'http://dbpedia.org/property/');
-\EasyRdf\RdfNamespace::set('dbr', 'http://dbpedia.org/resource/');
-\EasyRdf\RdfNamespace::set('actor', 'https://example.org/schema/actor');
-\EasyRdf\RdfNamespace::set('gold', 'http://purl.org/linguistics/gold/');
-\EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
-\EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
-\EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
-\EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
-
-$sparql = new \EasyRdf\Sparql\Client('http://dbpedia.org/sparql');
-$sparql_jena = new \EasyRdf\Sparql\Client('http://localhost:3030/Tubes_WS/sparql');
-
-error_reporting(E_ALL & ~E_DEPRECATED);
-
-$originalString = $_GET['actor'];
-$convertedString = str_replace('_', ' ', $originalString);
-$abstract = 'SELECT ?abstract WHERE {' .
-    '?actor rdfs:label "' . $convertedString . '"@en;' .
-    'dbo:abstract ?abstract .' .
-    'FILTER langMatches (lang(?abstract),"EN").' .
-    '}';
-
-$result_abstract = $sparql->query($abstract);
-
-foreach ($result_abstract as $abs) {
-    $abstract = $abs->abstract;
-}
-
-
-$q = 'SELECT DISTINCT * WHERE {
-    ?actor ' .
-    '    rdfs:label "' . $convertedString . '"@en; ' .
-    '    dbo:abstract ?abstract; ' .
-    '    dbo:wikiPageWikiLink ?wiki; ' .
-    '    dbo:birthDate ?birthDate; ' .
-    '    dbo:birthPlace ?birthPlace; ' . 
-    '    dbp:name ?name. ' . 
-    'FILTER langMatches (lang(?abstract),"EN") ' .
-    '}';
-
-$result_all = $sparql->query($q);
-
-    if (count($result_all) > 0) {
-        $firstResult = $result_all[0]; // Assuming you want the first result
-
-        $actorUri = $firstResult->actor;
-        $abstract = $firstResult->abstract;
-        $wikiLink = isset($firstResult->wiki) ? $firstResult->wiki : null; // Check if wiki exists
-
-        $birthDate = $firstResult->birthDate;
-        $birthPlace = $firstResult->birthPlace;
-        $name = $firstResult->name;
-        
-
-        if ($wikiLink !== null) {
-            \EasyRdf\RdfNamespace::setDefault('og');
-            $wiki = \EasyRdf\Graph::newAndLoad($wikiLink);
-            $foto_url = $wiki->image;
-        } else {
-            // Handle the case where wikiLink is undefined
-        }
-    }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css?php echo time(); ?>"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
     <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
-    <title>Actor Profile</title>
+    <title>{{ role.capitalize() if role else 'Profile' }} Profile | {{ display.name }}</title>
 </head>
 
 <body class="font-Work transition-colors bg-semiWhite">
     
     <div class="w-full bg-mainColor">
-        <?php include './components/navbar.php'?>
+        {% include 'components/navbar.html' %}
     </div>
+    {% macro display_details(details, role) %}
+    {% for detail in details %}
     <div class="profile-radius bg-mainColor h-[50vh] flex flex-col gap-8 justify-center items-center">
         <img class="rounded-full w-40 h-40 object-cover"
-        src="<?= $foto_url ?>" alt="">
+        src="{{ detail.image_url }}" alt="">
         <div class="flex flex-col items-center gap-2 relative w-full">
-            <p class="text-4xl text-semiWhite font-bold"><?= $name ?></p>
-            <p class="text-xl text-semiWhite opacity-50">Actor</p>
+            <p class="text-4xl text-semiWhite font-bold">{{ name }}</p>
+            <p class="text-xl text-semiWhite opacity-50">{{ role.capitalize() }}</p>
             <p class="text-lg text-semiWhite opacity-50 flex items-center gap-1 cursor-pointer" id="location"><i class="fa-solid fa-location-dot"></i> USA</p>
 
             <div class="absolute -bottom-40 right-60 bg-transparent justify-end hidden w-[500px]" id="map">
@@ -108,7 +40,7 @@ $result_all = $sparql->query($q);
             </div>
         
             <div class="">
-                    <p><?= $abstract ?></p>
+                    <p>{{ detail.abstract }}</p>
             </div>        
         </div>
         
@@ -121,11 +53,11 @@ $result_all = $sparql->query($q);
             <div class="">
                 <div class="border-bottom flex gap-4 h-[50px]">
                     <p class="font-bold">Born</p>
-                    <p class="name">June 13, 1981 · <?= $birthPlace ?></p>
+                    <p class="name">{{ detail.birthDate }} · {{ detail.birthPlace }}</p>
                 </div>
                 <div class="border-bottom flex gap-4 h-[50px]">
                     <p class="font-bold">Birth name</p>
-                    <p class="name"><?= $name ?></p>
+                    <p class="name">Chris Evans</p>
                 </div>
                 <div class="border-bottom flex gap-4 h-[50px]">
                     <p class="font-bold">Nickname</p>
@@ -200,12 +132,23 @@ $result_all = $sparql->query($q);
                 </div>
             </div>        
         </div>
-
+        {% endfor %}
         
     </div>
-    
+    {% endmacro %}
+    {% if "director_details" in display %}
+        {{ display_details(display.director_details, 'director') }}
+    {% endif %}
+
+    {% if "actor_details" in display %}
+        {{ display_details(display.actor_details, 'actor') }}
+    {% endif %}
+
+    {% if "writer_details" in display %}
+        {{ display_details(display.writer_details, 'writer') }}
+    {% endif %}
     <div class="text-mainColor">
-        <?php include './components/footer.php'?>
+        {% include 'components/footer.html' %}
     </div>
 
     <script>
