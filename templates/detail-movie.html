@@ -69,7 +69,7 @@
                 {% if details.director %}
                 {% for director in details.director %}
                 <span>&#x2022;</span>
-                <a href="{{ url_for('detail_page', role='director', name=director) }}" class="name">{{ director }}</a>
+                <a href="{{ url_for('detail_page', role='director', name=director) }}" class="name">{{ director |replace("_", " ") }}</a>
                 {% endfor %}
                 {% else %}
                 <p>No director information available.</p>
@@ -82,7 +82,7 @@
                 {% if details.writer %}
                 {% for writer in details.writer %}
                 <span>&#x2022;</span>
-                <a href="{{ url_for('detail_page', role='writer', name=writer) }}" class="name">{{ writer }}</a>
+                <a href="{{ url_for('detail_page', role='writer', name=writer) }}" class="name">{{ writer |replace("_", " ") }}</a>
                 {% endfor %}
                 {% else %}
                 <p>No writer information available.</p>
@@ -95,7 +95,7 @@
                     {% if details.starring %}
                         {% for starring in details.starring %}
                         <span>&#x2022;</span>
-                        <a href="{{ url_for('detail_page', role='actor', name=starring) }}" class="name">{{ starring }}</a>
+                        <a href="{{ url_for('detail_page', role='actor', name=starring) }}" class="name">{{ starring |replace("_", " ") }}</a>
                         {% endfor %}
                     {% else %}
                         <p>No cast information available.</p>

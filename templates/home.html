@@ -86,7 +86,7 @@
                     <p class="text-4xl text-white font-semibold">Genre</p>
                     <div class="flex flex-wrap gap-4 items-center justify-center w-[80%]">
                         {% for genre in data.genres %}
-                        <a
+                        <a href="{{ url_for('filter',type='genre',desc=genre) }}"
                             class="py-3 px-5 text-xl bg-mainColor text-white font-semibold border-2 border-white rounded-full hover:bg-white hover:text-mainColor transition-colors duration-300 ease-in-out cursor-pointer">{{
                             genre }}</a>
                         {% endfor %}

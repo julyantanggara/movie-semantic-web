@@ -1,8 +1,11 @@
-from flask import Flask, render_template
-from rdflib import Graph
+#module framework flask
+from flask import Flask, render_template,request
+#module untuk keperluan web scrapping
+import re
 import requests
 from bs4 import BeautifulSoup
-from rdflib import Namespace
+#module rdflib dan sparqlwrapper
+from rdflib import Graph, Namespace
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 app = Flask(__name__)
@@ -35,15 +38,17 @@ sparql = SPARQLWrapper("http://dbpedia.org/sparql")
 
 # web scrapping menggunakan module BeautifulSoup
 def get_wikilink_image_url(wikilink):
-    response = requests.get(wikilink)
-    wikipedia_content = response.text
+    url = wikilink
+    page = requests.get(url).text
+    soup = BeautifulSoup(page, 'html.parser')
 
-    soup = BeautifulSoup(wikipedia_content, 'html.parser')
-
-    img_element = soup.find('img', class_="mw-file-element")
-    if img_element:
-        image_url = img_element['src']
-        return image_url 
+    # Mencari semua tag img dengan class tertentu
+    for raw_img in soup.find_all('img',class_='mw-file-element'):
+        link = raw_img.get('src')
+        if  re.findall('wikipedia/.*/thumb/', link) and not re.search('.svg', link):
+            image_url = link
+            return image_url
+    
 #route awal
 @app.route('/')
 def display_index():
@@ -100,7 +105,7 @@ def display_rdf_data():
     }
     """
     
-    # query utk jumlahin movie
+    # query utk menghitung banyaknya movie
     movie_count_query = """
     SELECT DISTINCT (COUNT(*) AS ?jumlah) WHERE {
         ?movie rdf:type movie:search.
@@ -369,7 +374,7 @@ def detail_page(role, name):
         sparql.setReturnFormat(JSON)
         result_writer = sparql.query().convert()
 
-        # Extracting the actor details
+        # Extracting the writer details
         writer_details = []
         for row in result_writer["results"]["bindings"]:
             writer_detail = {
@@ -387,80 +392,89 @@ def detail_page(role, name):
         display["writer_details"] = writer_details
     return render_template('profile.html', display=display,role=role,name=converted_string)
 
-@app.route('/filter?<string:type>=<string:desc>')
-def filter(type,desc):
-    if type == "search":
-        search_query = '''
+@app.route('/query', methods=['GET','POST'])
+def process_form():
+    user_input = request.args.get('search', '').capitalize()
+
+    search_query = '''
         SELECT DISTINCT * WHERE {
             ?movie rdf:type movie:search;
-                movie:keyword "''' +desc+'''";
+                movie:keyword "''' + user_input + '''";
                 rdfs:label ?moviename;
-                movie:wiki ?wiki
+                movie:wiki ?wiki;
+                movie:rating ?rating;
+                movie:category ?category;
+                movie:year ?year;
+                movie:country ?country.
         }
-        '''
+    '''
+    search_result = g.query(search_query)
 
-        search_movie = g.query(search_query)
-    elif type == "genre":
-        filter_query = '''
-        SELECT DISTINCT * WHERE {
-            ?movie rdf:type movie:search;
-                movie:genre "'''+desc+'''"
-        }
-        '''
+    keyword = {
+        'movie_filter' : [],
+    }
+    for row in search_result:
+        moviename = row['moviename']
+        wiki = row['wiki']
+        rating = row['rating']
+        category = row['category']
+        year = row['year']
+        country = row['country']
+        image_url = get_wikilink_image_url(wiki)
 
-        genre_filter = g.query(filter_query)
-        movies_drama = g.query(movie_drama_query)
-        genres = g.query(genre_all_query)
-        movie_count_results = g.query(movie_count_query)
+        keyword['movie_filter'].append({
+            'moviename': moviename,
+            'wiki': wiki,
+            'rating': rating,
+            'category': category,
+            'year': year,
+            'country': country,
+            'image_url': image_url
+        })
 
-    #menghitung jumlah movie
-    moviecount = 0
-    for res in movie_count_results:
-        moviecount = res['jumlah']
+    return render_template('filter.html', search_query=search_query,data=keyword,desc=user_input)
 
-    #krn banyak row, declare menjadi array terlebih dahulu
-    data_to_display = {
-        'movies_all': [],
-        'movies_action': [],
-        'movies_drama': [],
+@app.route('/filter/<string:type>=<string:desc>')
+def filter(type,desc):
+    all_genre_query = '''
+    SELECT DISTINCT ?genre WHERE {
+        ?movie rdf:type movie:search;
+            movie:genre ?genre.
+    }
+    '''
+    genres = g.query(all_genre_query)
+
+    data = {
         'genres': [row['genre'] for row in genres],
-        'moviecount': moviecount,
+        'movie_filter' : []
     }
 
-    #berasal dari 1 query, pisahkan masing2 menjadi sebuah variable
-    for row in results:
-        moviename = row['moviename']
-        abstract = row['abstract']
-        wiki = row['wiki']
-        rating = row['rating']
-        category = row['category']
-        year = row['year']
-        country = row['country']
+    
+    filter_query = '''
+        SELECT DISTINCT * WHERE {
+            ?movie rdf:type movie:search;
+                movie:genre "'''+desc+'''";
+                rdfs:label ?moviename;
+                movie:wiki ?wiki;
+                movie:rating ?rating;
+                movie:category ?category;
+                movie:year ?year;
+                movie:country ?country.
+        }
+        '''
 
-        image_url = get_wikilink_image_url(wiki)
+    filter_result = g.query(filter_query)
 
-        data_to_display['movies_all'].append({
-            'moviename': moviename,
-            'abstract': abstract,
-            'wiki': wiki,
-            'rating': rating,
-            'category': category,
-            'year': year,
-            'country': country,
-            'image_url': image_url
-        })
-
-    for row in movies_action:
+    for row in filter_result:
         moviename = row['moviename']
         wiki = row['wiki']
         rating = row['rating']
         category = row['category']
         year = row['year']
         country = row['country']
-
         image_url = get_wikilink_image_url(wiki)
 
-        data_to_display['movies_action'].append({
+        data['movie_filter'].append({
             'moviename': moviename,
             'wiki': wiki,
             'rating': rating,
@@ -470,25 +484,7 @@ def filter(type,desc):
             'image_url': image_url
         })
 
-    for row in movies_drama:
-        moviename = row['moviename']
-        wiki = row['wiki']
-        rating = row['rating']
-        category = row['category']
-        year = row['year']
-        country = row['country']
+    return render_template('filter.html',desc=desc,data=data)
 
-        image_url = get_wikilink_image_url(wiki)
-
-        data_to_display['movies_drama'].append({
-            'moviename': moviename,
-            'wiki': wiki,
-            'rating': rating,
-            'category': category,
-            'year': year,
-            'country': country,
-            'image_url': image_url
-        })
-    return render_template('filter.html',filtering=filtering)
 if __name__ == '__main__':
     app.run()

@@ -21,7 +21,7 @@
             <!-- SEARCH SECTION START -->
             <div class="absolute left-0 top-0 h-screen w-[100vw] backdrop-blur-lg flex justify-center hidden opacity-0 transition-opacity duration-500 ease-in-out z-50"
                 id="searchField">
-                <form action="filter.php" method="get" class="mt-28 relative flex flex-col gap-8">
+                <form action="{{ url_for('process_form') }}" method="get" class="mt-28 relative flex flex-col gap-8">
                     <input name="search" type="text" placeholder="Title, Actor, Genre, Country" autocomplete="off" style="padding-left: 1rem;"
                         class="pr-12 py-2 w-[600px] h-14 rounded-full shadow-lg focus:outline-none text-mainColor"
                         id="searchInput">

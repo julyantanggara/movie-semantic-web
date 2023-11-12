@@ -66,8 +66,8 @@
             <div
               class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 blur rounded-full animate-gradient">    
             </div>
-          <form action="./filter.php">
-            <input type="text" name="" id="" autocomplete="off"
+          <form action="{{ url_for('process_form') }}" method="get">
+            <input type="text" name="search" id="" autocomplete="off"
             class="relative z-10 px-7 py-4 w-[80vw] sm:w-[500px] text-mainColor dark:text-[white] bg-white dark:bg-mainColor rounded-full leading-none flex items-center focus:dark:stroke-none font-medium placeholder-opacity-0 sm:placeholder-opacity-100 placeholder:dark:font-light transition duration-200 ease-in-out focus:outline-none" placeholder="Yaksha: Ruthless Operations">
             </input>
             <button type="submit" class="absolute right-4 top-3 z-20">
