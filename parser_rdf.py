@@ -9,18 +9,24 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 
 app = Flask(__name__)
 
-# deklarasi namespace
+# deklarasi namespace untuk rdflib
 dbo = Namespace("http://dbpedia.org/ontology/")
-dbc = Namespace ("http://dbpedia.org/resource/Category:")
 dbpedia = Namespace ("http://dbpedia.org/property/")
 dbr = Namespace ("http://dbpedia.org/resource/")
 movie = Namespace ("https://example.org/schema/movie")
-gold = Namespace ("http://purl.org/linguistics/gold/")
 dbp = Namespace ("http://dbpedia.org/property/")
 rdf = Namespace ("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 rdfs= Namespace ("http://www.w3.org/2000/01/rdf-schema#")
 foaf = Namespace("http://xmlns.com/foaf/0.1/")
 prov = Namespace("http://www.w3.org/ns/prov#") 
+
+#deklarasi prefix untuk jena fuseki
+prefixes = """
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    PREFIX movie: <https://example.org/schema/movie>
+"""
 
 #untuk mova.rdf
 g = Graph()
@@ -31,8 +37,11 @@ g.bind("dbo", dbo)
 g.bind("rdfs", rdfs)
 g.bind("prov",prov)
 
-#set up SPARQL endpoint dbpedia
+#set up SPARQL endpoint dbpedia & apache jena fuseki
 sparql = SPARQLWrapper("http://dbpedia.org/sparql")
+sparql.setReturnFormat(JSON)
+jena = SPARQLWrapper("http://localhost:3030/Tubes_WS/sparql")
+jena.setReturnFormat(JSON)
 
 #mendapatkan OGP menggunakan metode web scrapping
 def get_wikilink_image_url(wikilink):
@@ -41,9 +50,13 @@ def get_wikilink_image_url(wikilink):
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # Extract informasi OGP
-    image_url = soup.find('meta', property='og:image')['content']
+    og_image_tag = soup.find('meta', property='og:image')
 
-    return image_url
+    if og_image_tag:
+        image_url = og_image_tag.get('content')
+        return image_url
+    else:
+        return None
     
 #route awal
 @app.route('/')
@@ -206,7 +219,6 @@ def movie_detail(moviename):
         }
     '''
     sparql.setQuery(director_query)
-    sparql.setReturnFormat(JSON)
     results_director = sparql.query().convert()
 
     director = [row['director']['value'].replace("http://dbpedia.org/resource/", "") for row in results_director["results"]["bindings"]]
@@ -219,7 +231,6 @@ def movie_detail(moviename):
         }
     '''
     sparql.setQuery(writer_query)
-    sparql.setReturnFormat(JSON)
     result_writer = sparql.query().convert()
     writer = [row['writer']['value'].replace("http://dbpedia.org/resource/", "") for row in result_writer["results"]["bindings"]]
 
@@ -231,7 +242,6 @@ def movie_detail(moviename):
         }
     '''
     sparql.setQuery(starring_query)
-    sparql.setReturnFormat(JSON)
     result_starring = sparql.query().convert()
     starring = [row['starring']['value'].replace("http://dbpedia.org/resource/", "") for row in result_starring["results"]["bindings"]]
 
@@ -302,18 +312,18 @@ def detail_page(role, name):
             ?movie dbo:director ?director.
                 ?director rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
-                dbo:birthDate ?birthDate;
-                dbp:birthPlace ?birthPlace;
-                dbo:birthName ?birthName;
                 prov:wasDerivedFrom ?wiki.
-            ?movie rdfs:label ?movieLabel;
-                dbo:releaseDate ?movieRelease.
+            ?movie rdfs:label ?movieLabel.
+            OPTIONAL{?director dbo:birthDate ?birthDate}
+            OPTIONAL{?director dbp:birthPlace ?birthPlace}
+            OPTIONAL{?director dbo:birthName ?birthName}
+            OPTIONAL{?movie dbo:releaseDate ?movieRelease}
             FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
             }
+            GROUP BY ?movieLabel
             LIMIT 5
         '''
         sparql.setQuery(director_query)
-        sparql.setReturnFormat(JSON)
         result_director = sparql.query().convert()
         director_details = []
         for row in result_director["results"]["bindings"]:
@@ -339,41 +349,41 @@ def detail_page(role, name):
         actor_query = '''
             SELECT DISTINCT * WHERE {
             ?movie dbo:starring ?actor.
-            ?actor rdfs:label "'''+converted_string+'''"@en;
+                ?actor rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
-                dbo:birthDate ?birthDate;
-                dbp:birthPlace ?birthPlace;
-                dbo:birthName ?birthName;
                 prov:wasDerivedFrom ?wiki.
-            ?movie rdfs:label ?movieLabel;
-                         dbo:releaseDate ?movieRelease.
-           FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
+            ?movie rdfs:label ?movieLabel.
+            OPTIONAL{?actor dbo:birthDate ?birthDate}
+            OPTIONAL{?actor dbp:birthPlace ?birthPlace}
+            OPTIONAL{?actor dbo:birthName ?birthName}
+            OPTIONAL{?movie dbo:releaseDate ?movieRelease}
+            FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
             }
+            GROUP BY ?movieLabel ?birthPlace
             LIMIT 5
         '''
         sparql.setQuery(actor_query)
-        sparql.setReturnFormat(JSON)
         result_actor = sparql.query().convert()
-
-        # Extracting the actor details
-        actor_details = []
+        actor_details = {}
         for row in result_actor["results"]["bindings"]:
-            actor_detail = {
-                "abstract": row.get("abstract", {}).get("value", ""),
-                "birthDate": row.get("birthDate", {}).get("value", ""),
-                "birthPlace": row.get("birthPlace", {}).get("value", ""),
-                "birthName": row.get("birthName", {}).get("value", ""),
-                "movieLabel": row.get("movieLabel", {}).get("value", ""),
-                "movieRelease": row.get("movieRelease", {}).get("value", ""),
-                "wiki": row.get("wiki", {}).get("value", ""),
-            }
-            if actor_detail["wiki"]:
-                wiki_url = actor_detail["wiki"]
-                image_url = get_wikilink_image_url(wiki_url)
-                actor_detail["image_url"] = image_url
+            movie_label = row.get("movieLabel", {}).get("value", "")
+            if movie_label not in actor_details:
+                actor_detail = {
+                    "abstract": row.get("abstract", {}).get("value", ""),
+                    "birthDate": row.get("birthDate", {}).get("value", ""),
+                    "birthPlace": row.get("birthPlace", {}).get("value", ""),
+                    "birthName": row.get("birthName", {}).get("value", ""),
+                    "movieLabel": movie_label,
+                    "movieRelease": row.get("movieRelease", {}).get("value", ""),
+                    "wiki": row.get("wiki", {}).get("value", ""),
+                }
+                if actor_detail["wiki"]:
+                    wiki_url = actor_detail["wiki"]
+                    image_url = get_wikilink_image_url(wiki_url)
+                    actor_detail["image_url"] = image_url
 
-            actor_details.append(actor_detail)
-        display["actor_details"] = actor_details
+                actor_details[movie_label] = actor_detail
+        display["actor_details"] = list(actor_details.values())
 
     elif role == "writer":
         writer_query = '''
@@ -381,20 +391,17 @@ def detail_page(role, name):
             ?movie dbo:writer ?writer.
             ?writer rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
-                dbo:birthDate ?birthDate;
-                dbp:birthPlace ?birthPlace;
                 prov:wasDerivedFrom ?wiki.
-            ?movie rdfs:label ?movieLabel;
-                dbo:releaseDate ?movieRelease.
-            OPTIONAL {
-                ?writer dbo:birthName ?birthName.
-            }
+            ?movie rdfs:label ?movieLabel.
+            OPTIONAL{?movie dbo:releaseDate ?movieRelease}
+            OPTIONAL{?writer dbo:birthDate ?birthDate}
+            OPTIONAL{?writer dbp:birthPlace ?birthPlace}
+            OPTIONAL{?writer dbo:birthName ?birthName}
            FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
             }
             LIMIT 5
         '''
         sparql.setQuery(writer_query)
-        sparql.setReturnFormat(JSON)
         result_writer = sparql.query().convert()
 
         # Extracting the writer details
@@ -437,6 +444,7 @@ def process_form():
 
     keyword = {
         'movie_filter' : [],
+        'popular_movie' : [],
     }
     for row in search_result:
         moviename = row['moviename']
@@ -457,6 +465,47 @@ def process_form():
             'image_url': image_url
         })
 
+    popular_query = '''
+    '''+prefixes+''' 
+    SELECT ?number ?moviename ?wiki ?rating ?category ?year (GROUP_CONCAT(?genre; separator=" / ") as ?genres)
+    WHERE {
+        ?movie rdf:type movie:search;
+            movie:number ?number;
+            rdfs:label ?moviename;
+            movie:wiki ?wiki;
+            movie:rating ?rating;
+            movie:category ?category;
+            movie:year ?year;
+            movie:genre ?genre.
+        FILTER (?moviename != "" && xsd:integer(?number) > 5)
+    }
+    GROUP BY ?number ?moviename ?wiki ?rating ?category ?year
+    ORDER BY DESC(xsd:integer(?number))
+    LIMIT 5
+    '''
+
+    jena.setQuery(popular_query)
+    popular_result = jena.query().convert()
+    pop_movies = []
+    for result in popular_result["results"]["bindings"]:
+        pop_movie = {
+            "moviename": result.get("moviename", {}).get("value", ""),
+            "wiki": result.get("wiki", {}).get("value", ""),
+            "rating": result.get("rating", {}).get("value", ""),
+            "category": result.get("category", {}).get("value", ""),
+            "year": result.get("year", {}).get("value", ""),
+            "number": result.get("number", {}).get("value", ""),
+            "genre": result.get("genres", {}).get("value", ""), 
+        }
+
+        if pop_movie["wiki"]:
+            wiki_url = pop_movie["wiki"]
+            image_url = get_wikilink_image_url(wiki_url)
+            pop_movie["image_url"] = image_url
+        pop_movies.append(pop_movie)
+
+    keyword["popular_movie"] = pop_movies
+
     return render_template('filter.html', search_query=search_query,data=keyword,desc=user_input)
 
 @app.route('/filter/<string:type>=<string:desc>')
@@ -471,7 +520,8 @@ def filter(type,desc):
 
     data = {
         'genres': [row['genre'] for row in genres],
-        'movie_filter' : []
+        'movie_filter' : [],
+        'popular_movie' : []
     }
 
     
@@ -508,6 +558,47 @@ def filter(type,desc):
             'country': country,
             'image_url': image_url
         })
+    
+    popular_query = '''
+    '''+prefixes+''' 
+    SELECT ?number ?moviename ?wiki ?rating ?category ?year (GROUP_CONCAT(?genre; separator=" / ") as ?genres)
+    WHERE {
+        ?movie rdf:type movie:search;
+            movie:number ?number;
+            rdfs:label ?moviename;
+            movie:wiki ?wiki;
+            movie:rating ?rating;
+            movie:category ?category;
+            movie:year ?year;
+            movie:genre ?genre.
+        FILTER (?moviename != "" && xsd:integer(?number) > 5)
+    }
+    GROUP BY ?number ?moviename ?wiki ?rating ?category ?year
+    ORDER BY DESC(xsd:integer(?number))
+    LIMIT 5
+    '''
+
+    jena.setQuery(popular_query)
+    popular_result = jena.query().convert()
+    pop_movies = []
+    for result in popular_result["results"]["bindings"]:
+        pop_movie = {
+            "moviename": result.get("moviename", {}).get("value", ""),
+            "wiki": result.get("wiki", {}).get("value", ""),
+            "rating": result.get("rating", {}).get("value", ""),
+            "category": result.get("category", {}).get("value", ""),
+            "year": result.get("year", {}).get("value", ""),
+            "number": result.get("number", {}).get("value", ""),
+            "genre": result.get("genres", {}).get("value", ""), 
+        }
+
+        if pop_movie["wiki"]:
+            wiki_url = pop_movie["wiki"]
+            image_url = get_wikilink_image_url(wiki_url)
+            pop_movie["image_url"] = image_url
+        pop_movies.append(pop_movie)
+
+    data["popular_movie"] = pop_movies
 
     return render_template('filter.html',desc=desc,data=data)
 

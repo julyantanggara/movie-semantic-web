@@ -84,13 +84,15 @@
                 </div>
                 <div class="h-[100vh] w-full rounded-md">
                     <!--  -->
-                    {% for i in range(10) %}
-                    <a href="#" class="flex h-[80px] w-full gap-2 bg-lightGray rounded-md mb-4 overflow-hidden hover:bg-darkGray transition-colors duration-200 ease-in-out">
-                        <img src="../static/img/avengersHD.jpg" height="80" alt="">
+                    {% for movie in data.popular_movie %}
+                    <a href="{{ url_for('movie_detail', moviename=movie.moviename) }}" class="flex h-[80px] w-full gap-2 bg-lightGray rounded-md mb-4 overflow-hidden hover:bg-darkGray transition-colors duration-200 ease-in-out">
+                        <img src="{{ movie.image_url }}" height="80" alt="">
 
                         <div class="flex flex-col justify-center">
-                            <p class="font-light text-sm opacity-50">8.4 / Action / PG-13</p>
-                            <p class="font-semibold">Avengers: Infinity War</p>
+                            <p class="font-light text-sm opacity-50">{{ movie.rating }} / 
+                                {{ movie.genre }} /
+                                {{ movie.category }}</p>
+                            <p class="font-semibold">{{ movie.moviename }}</p>
                         </div>
                     </a>
                     {% endfor %}
