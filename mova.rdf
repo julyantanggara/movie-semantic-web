@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:dbo="http://dbpedia.org/ontology/"
+        xmlns:owl="http://www.w3.org/2002/07/owl#"
+        xmlns:dc="http://purl.org/dc/terms/"
+        xmlns:movie="https://example.org/schema/movie">
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Shawshank_Redemption">
+        <movie:number>1</movie:number>
+        <rdfs:label>The Shawshank Redemption</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>1994</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 22m</movie:time>
+        <movie:abstract>Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.</movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:rating>9.3</movie:rating>
+        <movie:keyword>Tim Robbins</movie:keyword>
+        <movie:keyword>Morgan Freeman</movie:keyword>
+        <movie:keyword>Bob Gunton</movie:keyword>
+        <movie:keyword>Frank Darabont</movie:keyword>
+        <movie:keyword>Frank Darabont</movie:keyword>
+        <movie:keyword>Stephen King</movie:keyword>
+        <movie:keyword>Redemption</movie:keyword>
+        <movie:keyword>Jail</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Niki Marvin</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Shawshank_Redemption"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/PLl99DlL6b4?si=Oht-XhXrxaZqiXDS"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Forrest_Gump">
+        <movie:number>2</movie:number>
+        <rdfs:label>Forrest Gump</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>1994</movie:year>
+        <movie:category>NC-17</movie:category>
+        <movie:time>2h 22m</movie:time>
+        <movie:abstract>The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.</movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Romance</movie:genre>
+        <movie:rating>8.8</movie:rating>
+        <movie:keyword>Robert Zemeckis</movie:keyword>
+        <movie:keyword>Winston Groom</movie:keyword>
+        <movie:keyword>Eric Roth</movie:keyword>
+        <movie:keyword>Tom Hanks</movie:keyword>
+        <movie:keyword>Robin Wright</movie:keyword>
+        <movie:keyword>Gary Sinise</movie:keyword>
+        <movie:keyword>Forrest</movie:keyword>
+        <movie:keyword>Gump</movie:keyword>
+        <movie:keyword>Journey</movie:keyword>
+        <movie:keyword>Motivation</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Romance</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Steve Starkey</movie:keyword>
+        <movie:keyword>Steve Tisch</movie:keyword>
+        <movie:keyword>Wendy Finerman</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Forrest_Gump"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/bLvqoHBptjg?si=BtuV7RTqtun9QpzX"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/A_Quiet_Place">
+        <movie:number>3</movie:number>
+        <rdfs:label>A Quiet Place</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2018</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>1h 30m</movie:time>
+        <movie:abstract>
+            A family struggles for survival in a world where most humans have been killed by blind but noise-sensitive creatures. They are forced to communicate in sign language to keep the creatures at bay.
+        </movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Horror</movie:genre>
+        <movie:genre>Sci-Fi</movie:genre>
+        <movie:rating>7.5</movie:rating>
+        <movie:keyword>John Krasinki</movie:keyword>
+        <movie:keyword>Emily Blunt</movie:keyword>
+        <movie:keyword>Millicent Simmonds</movie:keyword>
+        <movie:keyword>Noah Jupe</movie:keyword>
+        <movie:keyword>Bryan Woods</movie:keyword>
+        <movie:keyword>Scott Beck</movie:keyword>
+        <movie:keyword>Quiet</movie:keyword>
+        <movie:keyword>Place</movie:keyword>
+        <movie:keyword>Monster</movie:keyword>
+        <movie:keyword>Alien</movie:keyword>
+        <movie:keyword>Deaf</movie:keyword>
+        <movie:keyword>Horror</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Sci-Fi</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/A_Quiet_Place"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/WR7cc5t7tv8?si=L_UM0_Aa_PQOA5Xl"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Ocean's_8">
+        <movie:number>4</movie:number>
+        <rdfs:label>Ocean's 8</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2018</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>1h 50m</movie:time>
+        <movie:abstract>
+            Debbie Ocean gathers an all-female crew to attempt an impossible heist at New York City's annual Met Gala.
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:genre>Crime</movie:genre>
+        <movie:rating>6.3</movie:rating>
+        <movie:keyword>Gary Ross</movie:keyword>
+        <movie:keyword>Steven Soderbergh</movie:keyword>
+        <movie:keyword>Sandra Bullock</movie:keyword>
+        <movie:keyword>Rihanna</movie:keyword>
+        <movie:keyword>Anne Hathaway</movie:keyword>
+        <movie:keyword>Cate Blanchett</movie:keyword>
+        <movie:keyword>Sarah Paulson</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Heist</movie:keyword>
+        <movie:keyword>Women</movie:keyword>
+        <movie:keyword>Ocean</movie:keyword>
+        <movie:keyword>Eight</movie:keyword>
+        <movie:keyword>8</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Ocean%27s_8"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/n5LoVcVsiSQ?si=mBX22GFcZ_3n8mhs"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Five_Feet_Apart">
+        <movie:number>5</movie:number>
+        <rdfs:label>Five Feet Apart</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2019</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>1h 56m</movie:time>
+        <movie:abstract>
+            A pair of teenagers with cystic fibrosis meet in a hospital and fall in love, though their disease means they must avoid close physical contact.
+        </movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Romance</movie:genre>
+        <movie:rating>7.2</movie:rating>
+        <movie:keyword>Justin Baldoni</movie:keyword>
+        <movie:keyword>Mikki Daughtry</movie:keyword>
+        <movie:keyword>Tobias Iaconis</movie:keyword>
+        <movie:keyword>Haley Lu Richardson</movie:keyword>
+        <movie:keyword>Cole Sprouse</movie:keyword>
+        <movie:keyword>Moises Arias</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Romance</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Five</movie:keyword>
+        <movie:keyword>Feet</movie:keyword>
+        <movie:keyword>Apart</movie:keyword>
+        <movie:keyword>Teenager</movie:keyword>
+        <movie:keyword>Love</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Five_Feet_Apart"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/XtgCqMZofqM?si=j35F9JWhqj8te0KI"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Men_in_Black_(1997_film)">
+        <movie:number>6</movie:number>
+        <rdfs:label>Men in Black (1997 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>1997</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>1h 38m</movie:time>
+        <movie:abstract>
+            A police officer joins a secret organization that polices and monitors extraterrestrial interactions on Earth.        
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:rating>7.3</movie:rating>
+        <movie:keyword>Barry Sonnenfeld</movie:keyword>
+        <movie:keyword>Lowell Cunningham</movie:keyword>
+        <movie:keyword>Ed Solomon</movie:keyword>
+        <movie:keyword>Tommy Lee Jones</movie:keyword>
+        <movie:keyword>Will Smith</movie:keyword>
+        <movie:keyword>Linda Fiorentino</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Men</movie:keyword>
+        <movie:keyword>Black</movie:keyword>
+        <movie:keyword>Agent</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Men_in_Black_(1997_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/1Q4mhYF9aQQ?si=jM6zWthp0Z6wBumM"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Interstellar_(film)">
+        <movie:number>7</movie:number>
+        <rdfs:label>Interstellar (film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2014</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 49m</movie:time>
+        <movie:abstract>
+        When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Sci-Fi</movie:genre>
+        <movie:rating>8.7</movie:rating>
+        <movie:keyword>Christopher Nolan</movie:keyword>
+        <movie:keyword>Jonathan Nolan</movie:keyword>
+        <movie:keyword>Christopher Nolan</movie:keyword>
+        <movie:keyword>Matthew McConaughey</movie:keyword>
+        <movie:keyword>Anne Hathaway</movie:keyword>
+        <movie:keyword>Jessica Chastain</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Sci-Fi</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:keyword>Space</movie:keyword>
+        <movie:keyword>Physics</movie:keyword>
+        <movie:keyword>Quantum Physics</movie:keyword>
+        <movie:keyword>Science</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Interstellar_(film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/zSWdZVtXT7E?si=Dxqul-0iKIvgTPci"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Avatar_(2009_film)">
+        <movie:number>8</movie:number>
+        <rdfs:label>Avatar (2009 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2009</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 42m</movie:time>
+        <movie:abstract>
+            A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.9</movie:rating>
+        <movie:keyword>James Cameron</movie:keyword>
+        <movie:keyword>Sam Worthington</movie:keyword>
+        <movie:keyword>Zoe Saldana</movie:keyword>
+        <movie:keyword>Sigourney Weaver</movie:keyword>
+        <movie:keyword>Avatar</movie:keyword>
+        <movie:keyword>Blue</movie:keyword>
+        <movie:keyword>Jake Sully</movie:keyword>
+        <movie:keyword>Neytiri</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Avatar_(2009_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/5PSNL1qE6VY?si=BfQUnOGg3wbBAGqQ"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Avatar:_The_Way_of_Water">
+        <movie:number>9</movie:number>
+        <rdfs:label>Avatar: The Way of Water</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2022</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>3h 12m</movie:time>
+        <movie:abstract>
+            Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.6</movie:rating>
+        <movie:keyword>James Cameron</movie:keyword>
+        <movie:keyword>Rick Jaffa</movie:keyword>
+        <movie:keyword>Amanda Silver</movie:keyword>
+        <movie:keyword>Sam Worthington</movie:keyword>
+        <movie:keyword>Zoe Saldana</movie:keyword>
+        <movie:keyword>Sigourney Weaver</movie:keyword>
+        <movie:keyword>Avatar</movie:keyword>
+        <movie:keyword>Way Of Water</movie:keyword>
+        <movie:keyword>Blue</movie:keyword>
+        <movie:keyword>Jake Sully</movie:keyword>
+        <movie:keyword>Neytiri</movie:keyword>
+        <movie:keyword>Neteyam</movie:keyword>
+        <movie:keyword>Tsireya</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Avatar:_The_Way_of_Water"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/d9MyW72ELq0?si=ly1vQ-BI2o91_PH3"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Kung_Fu_Hustle">
+        <movie:number>10</movie:number>
+        <rdfs:label>Kung Fu Hustle</rdfs:label>
+        <movie:country>China</movie:country>
+        <movie:year>2004</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>1h 39m</movie:time>
+        <movie:abstract>
+            In Shanghai, China in the 1940s, a wannabe gangster aspires to join the notorious "Axe Gang" while residents of a housing complex exhibit extraordinary powers in defending their turf.
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.7</movie:rating>
+        <movie:keyword>Stephen Chou</movie:keyword>
+        <movie:keyword>Huang Shengyi</movie:keyword>
+        <movie:keyword>Yuen Qiu</movie:keyword>
+        <movie:keyword>Danny Chan Kwok Kwan</movie:keyword>
+        <movie:keyword>Lee Siu Lung</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>Hustle</movie:keyword>
+        <movie:keyword>Kungfu</movie:keyword>
+        <movie:keyword>Buddha</movie:keyword>
+        <movie:keyword>Martial Arts</movie:keyword>
+        <movie:keyword>China</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Kung_Fu_Hustle"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/FtE9-o6dBEI?si=30ZOzUW6LKeDk6I5"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Godzilla_vs._Kong">
+        <movie:number>11</movie:number>
+        <rdfs:label>Godzilla vs. Kong</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2021</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>1h 53m</movie:time>
+        <movie:abstract>
+            The epic next chapter in the cinematic Monsterverse pits two of the greatest icons in motion picture history against each other--the fearsome Godzilla and the mighty Kong--with humanity caught in the balance.
+        </movie:abstract>
+        <movie:genre>Action</movie:genre>
+        <movie:genre>Sci-Fi</movie:genre>
+        <movie:genre>Thriller</movie:genre>
+        <movie:rating>6.3</movie:rating>
+        <movie:keyword>Adam Wingard</movie:keyword>
+        <movie:keyword>Erix Pearson</movie:keyword>
+        <movie:keyword>Terry Rossio</movie:keyword>
+        <movie:keyword>Michael Dougherty</movie:keyword>
+        <movie:keyword>Max Borenstein</movie:keyword>
+        <movie:keyword>Brian Tyree Henry</movie:keyword>
+        <movie:keyword>Julian Dennison</movie:keyword>
+        <movie:keyword>Shun Oguri</movie:keyword>
+        <movie:keyword>Millie Bobbie Brown</movie:keyword>
+        <movie:keyword>Rebecca Hall</movie:keyword>
+        <movie:keyword>Godzilla</movie:keyword>
+        <movie:keyword>Kong</movie:keyword>
+        <movie:keyword>Dinosaur</movie:keyword>
+        <movie:keyword>Ghidorah</movie:keyword>
+        <movie:keyword>Action</movie:keyword>
+        <movie:keyword>Sci-Fi</movie:keyword>
+        <movie:keyword>Thriller</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Godzilla_vs._Kong"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/odM92ap8_c0?si=GRUsbX8s3Wf_LCYl"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Parasite_(2019_film)">
+        <movie:number>12</movie:number>
+        <rdfs:label>Parasite (2019 film)</rdfs:label>
+        <movie:country>Korea</movie:country>
+        <movie:year>2019</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 12m</movie:time>
+        <movie:abstract>
+        Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.
+        </movie:abstract>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Thriller</movie:genre>
+        <movie:rating>8.5</movie:rating>
+        <movie:keyword>Bong Joon Ho</movie:keyword>
+        <movie:keyword>Han Jin-Won</movie:keyword>
+        <movie:keyword>Song Kang-ho</movie:keyword>
+        <movie:keyword>Lee Sun-Kyun</movie:keyword>
+        <movie:keyword>Cho Yeo-jeong</movie:keyword>
+        <movie:keyword>Parasite</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Killer</movie:keyword>
+        <movie:keyword>Basement</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Thriller</movie:keyword>
+        <movie:keyword>Korea</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Parasite_(2019_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/SEUXfv87Wpk?si=GHmMgdAbD5KvI2L0"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Wolf_of_Wall_Street_(2013_film)">
+        <movie:number>13</movie:number>
+        <rdfs:label>The Wolf of Wall Street (2013 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2013</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>3h</movie:time>
+        <movie:abstract>
+        Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.
+        </movie:abstract>
+        <movie:genre>Biography</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:genre>Crime</movie:genre>
+        <movie:rating>8.2</movie:rating>
+        <movie:keyword>Martin Scorsese</movie:keyword>
+        <movie:keyword>Terence Winter</movie:keyword>
+        <movie:keyword>Jordan Belfort</movie:keyword>
+        <movie:keyword>Leonardo DiCaprio</movie:keyword>
+        <movie:keyword>Jonah Hill</movie:keyword>
+        <movie:keyword>Margot Robbie</movie:keyword>
+        <movie:keyword>Wolf</movie:keyword>
+        <movie:keyword>Wall Street</movie:keyword>
+        <movie:keyword>Business</movie:keyword>
+        <movie:keyword>Biography</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Wolf_of_Wall_Street_(film_2013)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/GNGCav9fRhc?si=l2RKS-m7wfk2G-tK"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/The_Imitation_Game">
+        <movie:number>14</movie:number>
+        <rdfs:label>The Imitation Game</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2014</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>1h 54m</movie:time>
+        <movie:abstract>
+        During World War II, the English mathematical genius Alan Turing tries to crack the German Enigma code with help from fellow mathematicians while attempting to come to terms with his troubled private life.
+        </movie:abstract>
+        <movie:genre>Biography</movie:genre>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Thriller</movie:genre>
+        <movie:rating>8.0</movie:rating>
+        <movie:keyword>Morten Tyldum</movie:keyword>
+        <movie:keyword>Graham Moore</movie:keyword>
+        <movie:keyword>Andrew Hodges</movie:keyword>
+        <movie:keyword>Benedict Cumberbatch</movie:keyword>
+        <movie:keyword>Keira Knightley</movie:keyword>
+        <movie:keyword>Matthew Goode</movie:keyword>
+        <movie:keyword>Imitation</movie:keyword>
+        <movie:keyword>Imitation_Game</movie:keyword>
+        <movie:keyword>Game</movie:keyword>
+        <movie:keyword>Enigma</movie:keyword>
+        <movie:keyword>Programming</movie:keyword>
+        <movie:keyword>Computer</movie:keyword>
+        <movie:keyword>War</movie:keyword>
+        <movie:keyword>World War</movie:keyword>
+        <movie:keyword>Biography</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Thriller</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/The_Imitation_Game"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/nuPZUUED5uk?si=ZFqoFEhfAWS1HVuk"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Photocopier_(film)">
+        <movie:number>15</movie:number>
+        <rdfs:label>Photocopier (film)</rdfs:label>
+        <movie:country>Indonesia</movie:country>
+        <movie:year>2021</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 10m</movie:time>
+        <movie:abstract>
+        After losing her scholarship when photos of her at a party surface online, a student pairs with a photocopy worker to piece together what happened.
+        </movie:abstract>
+        <movie:genre>Crime</movie:genre>
+        <movie:genre>Drama</movie:genre>
+        <movie:genre>Mystery</movie:genre>
+        <movie:rating>6.8</movie:rating>
+        <movie:keyword>Wregas Bhantuteja</movie:keyword>
+        <movie:keyword>Henricus Pria</movie:keyword>
+        <movie:keyword>Shenina Cinnamon</movie:keyword>
+        <movie:keyword>Dea Panendra</movie:keyword>
+        <movie:keyword>Giulio Parengkuan</movie:keyword>
+        <movie:keyword>Penyalin Cahaya</movie:keyword>
+        <movie:keyword>Fotokopi</movie:keyword>
+        <movie:keyword>Penyalin</movie:keyword>
+        <movie:keyword>fotokopier</movie:keyword>
+        <movie:keyword>photocopy</movie:keyword>
+        <movie:keyword>Cahaya</movie:keyword>
+        <movie:keyword>Sekolah</movie:keyword>
+        <movie:keyword>School</movie:keyword>
+        <movie:keyword>Crime</movie:keyword>
+        <movie:keyword>Drama</movie:keyword>
+        <movie:keyword>Mystery</movie:keyword>
+        <movie:keyword>Indonesia</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Photocopier_(film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/mjhGJ2g1NCQ?si=TAzRE_avQf8OyfoH"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Philosopher's_Stone_(film)">
+        <movie:number>16</movie:number>
+        <rdfs:label>Harry Potter and the Philosopher's Stone (film)</rdfs:label>
+        <movie:country>United Kingdom</movie:country>
+        <movie:year>2001</movie:year>
+        <movie:category>G</movie:category>
+        <movie:time>2h 32m</movie:time>
+        <movie:abstract>
+            An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Family</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.6</movie:rating>
+        <movie:keyword>Chris Columbus</movie:keyword>
+        <movie:keyword>J.K. Rowling</movie:keyword>
+        <movie:keyword>Steve Kloves</movie:keyword>
+        <movie:keyword>Daniel Radcliffe</movie:keyword>
+        <movie:keyword>Emma Watson</movie:keyword>
+        <movie:keyword>Julie Walters</movie:keyword>
+        <movie:keyword>Alan Rickman</movie:keyword>
+        <movie:keyword>Rupert Grint</movie:keyword>
+        <movie:keyword>Harry Potter</movie:keyword>
+        <movie:keyword>Hermione</movie:keyword>
+        <movie:keyword>Ron Weasley</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>Magic</movie:keyword>
+        <movie:keyword>Gryffindor</movie:keyword>
+        <movie:keyword>Hufflepuff</movie:keyword>
+        <movie:keyword>Slytherin</movie:keyword>
+        <movie:keyword>Ravenclaw</movie:keyword>
+        <movie:keyword>United Kingdom</movie:keyword>
+        <movie:keyword>UK</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Harry_Potter_and_the_Sorcerer%27s_Stone"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/VyHV0BRtdxo?si=g2YUjsuoqNw3bMx8"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Chamber_of_Secrets_(film)">
+        <movie:number>17</movie:number>
+        <rdfs:label>Harry Potter and the Chamber of Secrets (film)</rdfs:label>
+        <movie:country>United Kingdom</movie:country>
+        <movie:year>2002</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 41m</movie:time>
+        <movie:abstract>
+            An ancient prophecy seems to be coming true when a mysterious presence begins stalking the corridors of a school of magic and leaving its victims paralyzed.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Family</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.4</movie:rating>
+        <movie:keyword>Chris Columbus</movie:keyword>
+        <movie:keyword>J.K. Rowling</movie:keyword>
+        <movie:keyword>Steve Kloves</movie:keyword>
+        <movie:keyword>Daniel Radcliffe</movie:keyword>
+        <movie:keyword>Emma Watson</movie:keyword>
+        <movie:keyword>Julie Walters</movie:keyword>
+        <movie:keyword>Alan Rickman</movie:keyword>
+        <movie:keyword>Rupert Grint</movie:keyword>
+        <movie:keyword>Harry Potter</movie:keyword>
+        <movie:keyword>Hermione</movie:keyword>
+        <movie:keyword>Ron Weasley</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>Magic</movie:keyword>
+        <movie:keyword>Gryffindor</movie:keyword>
+        <movie:keyword>Hufflepuff</movie:keyword>
+        <movie:keyword>Slytherin</movie:keyword>
+        <movie:keyword>Ravenclaw</movie:keyword>
+        <movie:keyword>United Kingdom</movie:keyword>
+        <movie:keyword>UK</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Harry_Potter_and_the_Chamber_of_Secrets"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/2lSpGlsZtk0?si=m1_NRxlXbejZUx87"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Prisoner_of_Azkaban_(film)">
+        <movie:number>18</movie:number>
+        <rdfs:label>Harry Potter and the Prisoner of Azkaban (film)</rdfs:label>
+        <movie:country>United Kingdom</movie:country>
+        <movie:year>2004</movie:year>
+        <movie:category>PG-13</movie:category>
+        <movie:time>2h 22m</movie:time>
+        <movie:abstract>
+            Harry Potter, Ron and Hermione return to Hogwarts School of Witchcraft and Wizardry for their third year of study, where they delve into the mystery surrounding an escaped prisoner who poses a dangerous threat to the young wizard.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Family</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.9</movie:rating>
+        <movie:keyword>Alfonso Cuaron</movie:keyword>
+        <movie:keyword>J.K. Rowling</movie:keyword>
+        <movie:keyword>Steve Kloves</movie:keyword>
+        <movie:keyword>Daniel Radcliffe</movie:keyword>
+        <movie:keyword>Emma Watson</movie:keyword>
+        <movie:keyword>Julie Walters</movie:keyword>
+        <movie:keyword>Alan Rickman</movie:keyword>
+        <movie:keyword>Rupert Grint</movie:keyword>
+        <movie:keyword>Harry Potter</movie:keyword>
+        <movie:keyword>Hermione</movie:keyword>
+        <movie:keyword>Ron Weasley</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>Magic</movie:keyword>
+        <movie:keyword>Gryffindor</movie:keyword>
+        <movie:keyword>Hufflepuff</movie:keyword>
+        <movie:keyword>Slytherin</movie:keyword>
+        <movie:keyword>Ravenclaw</movie:keyword>
+        <movie:keyword>United Kingdom</movie:keyword>
+        <movie:keyword>UK</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Harry_Potter_and_the_Prisoner_of_Azkaban"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/cK2WNlj6kR0?si=6zz02pjau0-02OxI"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Goblet_of_Fire_(film)">
+        <movie:number>19</movie:number>
+        <rdfs:label>Harry Potter and the Goblet of Fire (film)</rdfs:label>
+        <movie:country>United Kingdom</movie:country>
+        <movie:year>2005</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 37m</movie:time>
+        <movie:abstract>
+            Harry Potter finds himself competing in a hazardous tournament between rival schools of magic, but he is distracted by recurring nightmares.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Family</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.7</movie:rating>
+        <movie:keyword>Mike Newell</movie:keyword>
+        <movie:keyword>J.K. Rowling</movie:keyword>
+        <movie:keyword>Steve Kloves</movie:keyword>
+        <movie:keyword>Daniel Radcliffe</movie:keyword>
+        <movie:keyword>Emma Watson</movie:keyword>
+        <movie:keyword>Julie Walters</movie:keyword>
+        <movie:keyword>Alan Rickman</movie:keyword>
+        <movie:keyword>Rupert Grint</movie:keyword>
+        <movie:keyword>Harry Potter</movie:keyword>
+        <movie:keyword>Hermione</movie:keyword>
+        <movie:keyword>Ron Weasley</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>Magic</movie:keyword>
+        <movie:keyword>Gryffindor</movie:keyword>
+        <movie:keyword>Hufflepuff</movie:keyword>
+        <movie:keyword>Slytherin</movie:keyword>
+        <movie:keyword>Ravenclaw</movie:keyword>
+        <movie:keyword>United Kingdom</movie:keyword>
+        <movie:keyword>UK</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/4xkFJgcCQRE?si=fGm40GmxNcP7Er4o"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Harry_Potter_and_the_Order_of_the_Phoenix">
+        <movie:number>20</movie:number>
+        <rdfs:label>Harry Potter and the Order of the Phoenix (film)</rdfs:label>
+        <movie:country>United Kingdom</movie:country>
+        <movie:year>2007</movie:year>
+        <movie:category>R</movie:category>
+        <movie:time>2h 18m</movie:time>
+        <movie:abstract>
+            With their warning about Lord Voldemort's return scoffed at, Harry and Dumbledore are targeted by the Wizard authorities as an authoritarian bureaucrat slowly seizes power at Hogwarts.
+        </movie:abstract>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Family</movie:genre>
+        <movie:genre>Fantasy</movie:genre>
+        <movie:rating>7.7</movie:rating>
+        <movie:keyword>David Yates</movie:keyword>
+        <movie:keyword>J.K. Rowling</movie:keyword>
+        <movie:keyword>Michael Goldenberg</movie:keyword>
+        <movie:keyword>Daniel Radcliffe</movie:keyword>
+        <movie:keyword>Emma Watson</movie:keyword>
+        <movie:keyword>Julie Walters</movie:keyword>
+        <movie:keyword>Alan Rickman</movie:keyword>
+        <movie:keyword>Rupert Grint</movie:keyword>
+        <movie:keyword>Harry Potter</movie:keyword>
+        <movie:keyword>Hermione</movie:keyword>
+        <movie:keyword>Ron Weasley</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Family</movie:keyword>
+        <movie:keyword>Fantasy</movie:keyword>
+        <movie:keyword>Magic</movie:keyword>
+        <movie:keyword>Gryffindor</movie:keyword>
+        <movie:keyword>Hufflepuff</movie:keyword>
+        <movie:keyword>Slytherin</movie:keyword>
+        <movie:keyword>Ravenclaw</movie:keyword>
+        <movie:keyword>United Kingdom</movie:keyword>
+        <movie:keyword>UK</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Harry_Potter_and_the_Order_of_the_Phoenix"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/47PHbQTmw5g?si=8mw6al-E3MFy3bR7"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Up_(2009_film)">
+        <movie:number>21</movie:number>
+        <rdfs:label>Up (2009 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2009</movie:year>
+        <movie:category>G</movie:category>
+        <movie:time>1h 36m</movie:time>
+        <movie:abstract>
+            78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.
+        </movie:abstract>
+        <movie:genre>Animation</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:rating>8.3</movie:rating>
+        <movie:keyword>Pete Docter</movie:keyword>
+        <movie:keyword>Bob Peterson</movie:keyword>
+        <movie:keyword>Tom McCarthy</movie:keyword>
+        <movie:keyword>Jordan Nagai</movie:keyword>
+        <movie:keyword>Christopher Plummer</movie:keyword>
+        <movie:keyword>Ed Asner</movie:keyword>
+        <movie:keyword>Scout</movie:keyword>
+        <movie:keyword>Baloon</movie:keyword>
+        <movie:keyword>Up</movie:keyword>
+        <movie:keyword>Dogs</movie:keyword>
+        <movie:keyword>Animation</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://en.wikipedia.org/wiki/Up_(2009_film)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/HWEW_qTLSEE?si=Dkxd-DciX5oL1lDy"/>
+    </movie:search>
+    <movie:search rdf:about="http://dbpedia.org/resource/Frozen_(2013_film)">
+        <movie:number>22</movie:number>
+        <rdfs:label>Frozen (2013 film)</rdfs:label>
+        <movie:country>America</movie:country>
+        <movie:year>2013</movie:year>
+        <movie:category>G</movie:category>
+        <movie:time>1h 42m</movie:time>
+        <movie:abstract>
+            When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition.
+        </movie:abstract>
+        <movie:genre>Animation</movie:genre>
+        <movie:genre>Adventure</movie:genre>
+        <movie:genre>Comedy</movie:genre>
+        <movie:rating>7.4</movie:rating>
+        <movie:keyword>Chris Buck</movie:keyword>
+        <movie:keyword>Jennifer Lee</movie:keyword>
+        <movie:keyword>Santino Fontana</movie:keyword>
+        <movie:keyword>Jonathan Groff</movie:keyword>
+        <movie:keyword>Josh Gad</movie:keyword>
+        <movie:keyword>Idina Menzel</movie:keyword>
+        <movie:keyword>Kristen Bell</movie:keyword>
+        <movie:keyword>Animation</movie:keyword>
+        <movie:keyword>Adventure</movie:keyword>
+        <movie:keyword>Comedy</movie:keyword>
+        <movie:keyword>Snow</movie:keyword>
+        <movie:keyword>Frozen</movie:keyword>
+        <movie:keyword>Princess</movie:keyword>
+        <movie:keyword>Kingdom</movie:keyword>
+        <movie:keyword>Reindeer</movie:keyword>
+        <movie:keyword>Snowman</movie:keyword>
+        <movie:keyword>Elsa</movie:keyword>
+        <movie:keyword>Anna</movie:keyword>
+        <movie:keyword>Olaf</movie:keyword>
+        <movie:keyword>Kristoff</movie:keyword>
+        <movie:keyword>America</movie:keyword>
+        <movie:wiki rdf:resource="https://id.wikipedia.org/wiki/Frozen_(film_2013)"/>
+        <foaf:trailer rdf:resource="https://www.youtube.com/embed/TbQm5doF_Uc?si=pRh9f0CPsMx-mOO7"/>
+    </movie:search>
+</rdf:RDF>

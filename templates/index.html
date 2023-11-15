@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home | Movie</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/style.css?php echo time(); ?>"/>
+    <link rel="stylesheet" href="../static/css/style.css"/>
   </head>
   <body class="font-Work transition-colors bg-[#f5f6f8] dark:bg-mainColor relative">
 
@@ -20,7 +20,7 @@
       <p class="text-2xl font-bold gradient-text-light unselectable">MOVΛ</p>
 
       <div class="flex gap-8 font-normal text-black dark:text-[#d1d5db]">
-        <a href="./home.php" class="relative inline-block hover:before:w-full before:block before:bg-black dark:before:bg-[#d1d5db] before:absolute before:inset-x-0 before:left-0 before:bottom-[-2px] before:w-0 before:h-[1px] before:transition-width before:duration-300">Explore</a>
+        <a href="{{ url_for('display_rdf_data') }}" class="relative inline-block hover:before:w-full before:block before:bg-black dark:before:bg-[#d1d5db] before:absolute before:inset-x-0 before:left-0 before:bottom-[-2px] before:w-0 before:h-[1px] before:transition-width before:duration-300">Explore</a>
       </div>
 
       <!-- <div class="transition duration-500 ease-in-out hidden sm:block">
@@ -66,8 +66,8 @@
             <div
               class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 blur rounded-full animate-gradient">    
             </div>
-          <form action="./filter.php">
-            <input type="text" name="" id="" autocomplete="off"
+          <form action="{{ url_for('process_form') }}" method="get">
+            <input type="text" name="search" id="" autocomplete="off"
             class="relative z-10 px-7 py-4 w-[80vw] sm:w-[500px] text-mainColor dark:text-[white] bg-white dark:bg-mainColor rounded-full leading-none flex items-center focus:dark:stroke-none font-medium placeholder-opacity-0 sm:placeholder-opacity-100 placeholder:dark:font-light transition duration-200 ease-in-out focus:outline-none" placeholder="Yaksha: Ruthless Operations">
             </input>
             <button type="submit" class="absolute right-4 top-3 z-20">
