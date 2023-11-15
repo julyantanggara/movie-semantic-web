@@ -120,15 +120,15 @@ document.addEventListener("DOMContentLoaded", function() {
     checkboxes.forEach(function(checkbox) {
       var checkedBox = checkbox.previousElementSibling.querySelector(".checkedBox");
 
-      checkbox.addEventListener("change", function() {
-        if (checkbox.checked) {
-          checkedBox.classList.remove("hidden");
-        } else {
-          checkedBox.classList.add("hidden");
-        }
-      });
+        checkbox.addEventListener("change", function() {
+            if (checkbox.checked) {
+            checkedBox.classList.remove("hidden");
+            } else {
+            checkedBox.classList.add("hidden");
+            }
+        });
     });
-  });
+});
 
 // POPULAR
 const scrollButtonLeft = document.getElementById("scrollLeft");
