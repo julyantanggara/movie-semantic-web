@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ details.moviename }}" />
+    <meta property="og:description" content="Detailed Information of {{ details.moviename }}" />
+    <meta property="og:image" content="{{ details.image_url }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MOVA" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
+    <title>{{ details.moviename }}</title>
+</head>
+
+<body class="font-Work transition-colors bg-mainColor relative">
+
+    <div class="w-full">
+        {% include 'components/navbar.html' %}
+    </div>
+    <!-- BACKGROUND START -->
+    <img src="{{ details.image_url }}" class="w-[400px] absolute top-0 left-[570px] -z-50" alt="">
+    <div class="absolute top-0 -z-40 h-[100vh] w-full bg-mainColor bg-opacity-30 backdrop-blur-[150px]"></div>
+    <!-- BACKGROUND END -->
+    <div class="w-full mb-16 px-56 py-8 flex flex-col gap-4">
+        <div class="flex justify-between">
+            <div class="flex flex-col gap-4">
+                <p class="text-5xl font-bold text-semiWhite">{{details.moviename}}</p>
+                <div class="text-sm font-light text-semiWhite flex gap-2">
+                    <p>{{ details.year }}</p>
+                    <span>&#x2022;</span>
+                    <p>{{ details.category }}</p>
+                    <span>&#x2022;</span>
+                    <p>{{ details.time }}</p>
+                    <span>&#x2022;</span>
+                    <p>{{ details.country }}</p>
+                </div>
+            </div>
+            <div class="flex gap-2 pr-1 pt-1">
+                <i class="fa-solid fa-star text-2xl" style="color: #f6ca2a;"></i>
+                <div class="text-semiWhite flex flex-col">
+                    <p><span class="font-bold text-2xl">{{ details.rating }}</span> <span class="opacity-80 text-lg">/
+                            10 </span> </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex gap-2">
+            <img src="{{ details.image_url }}" class="w-[278.27px] h-[414.68px] rounded-md" alt="">
+
+            <iframe class="rounded-md shadow-md" width="800" height="414.68" src="{{ details.trailer }}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="flex gap-2 text-semiWhite">
+            {% for genre in details.genre %}
+            <a href="{{ url_for('filter',type='genre',desc=genre) }}"
+                class="border border-semiWhite rounded-full px-2 py-1 opacity-100 hover:opacity-70 transition-opacity duration-300">
+                {{ genre }}</a>
+            {% endfor %}
+        </div>
+
+        <p class="text-semiWhite text-lg">{{ details.abstract }}</p>
+
+        <div class="">
+            <!-- Directors -->
+            <div class="flex gap-4 text-semiWhite border-top">
+                <b class="w-[100px]">Directors</b>
+                {% if details.director %}
+                {% for director in details.director %}
+                <span>&#x2022;</span>
+                <a href="{{ url_for('detail_page', role='director', name=director) }}" class="name">{{ director |replace("_", " ") }}</a>
+                {% endfor %}
+                {% else %}
+                <p>No director information available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Writers -->
+            <div class="flex gap-4 text-semiWhite border-top">
+                <b class="w-[100px]">Writers</b>
+                {% if details.writer %}
+                {% for writer in details.writer %}
+                <span>&#x2022;</span>
+                <a href="{{ url_for('detail_page', role='writer', name=writer) }}" class="name">{{ writer |replace("_", " ") }}</a>
+                {% endfor %}
+                {% else %}
+                <p>No writer information available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Casts -->
+            <div class="flex gap-4 text-semiWhite border-top">
+                <b class="w-[100px]">Casts</b>
+                    {% if details.starring %}
+                        {% for starring in details.starring %}
+                        <span>&#x2022;</span>
+                        <a href="{{ url_for('detail_page', role='actor', name=starring) }}" class="name">{{ starring |replace("_", " ") }}</a>
+                        {% endfor %}
+                    {% else %}
+                        <p>No cast information available.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="text-semiWhite">
+        {% include 'components/footer.html' %}
+    </div>
+
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>

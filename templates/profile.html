@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% macro display_details(details,role) %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ role.capitalize() if role else 'Profile' }} Profile | {{ name }}" />
+    <meta property="og:description" content="Detailed Information of {{ role.capitalize() }}" />
+    {% if details[0].image_url %}<meta property="og:image" content="{{ details[0].image_url }}" />
+    {% else %}<meta property="og:image" content="{{ url_for('static', filename='img/default_image.jpg') }}" />{% endif %}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MOVA" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
+    <title>{{ role.capitalize() if role else 'Profile' }} Profile | {{ name }}</title>
+</head>
+
+<body class="font-Work transition-colors bg-semiWhite">
+
+    <div class="w-full bg-mainColor">
+        {% include 'components/navbar.html' %}
+    </div>
+    
+    <div class="profile-radius bg-mainColor h-[50vh] flex flex-col gap-8 justify-center items-center">
+        {% if details[0].image_url %}
+        <img class="rounded-full w-40 h-40 object-cover" src="{{ details[0].image_url }}" alt="">
+        {% else %}
+        <img class="rounded-full w-40 h-40 object-cover" src="{{ url_for('static', filename='img/default_image.jpg') }}" alt="">
+        {% endif %}
+        <div class="flex flex-col items-center gap-2 relative w-full">
+            <p class="text-4xl text-semiWhite font-bold">{{ name }}</p>
+            <p class="text-xl text-semiWhite opacity-50">{{ role.capitalize() }}</p>
+            <p class="text-lg text-semiWhite opacity-50 flex items-center gap-1 cursor-pointer" id="location">
+                <i class="fa-solid fa-location-dot"></i>
+                {% if details[0].birthPlace %}
+                        {{ details[0].location }}
+                {% else %}
+                    Birthplace information not available.
+                {% endif %}
+            </p>
+            <div class="absolute -bottom-40 right-60 bg-transparent justify-end hidden w-[500px]" id="map">
+                <div class="bg-semiWhite p-2 shadow-lg rounded-md ">
+                    <div id = "maps" style = "width: 500px; height: 380px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="px-72 py-8 flex flex-col gap-14">
+        <div class="gap-4 flex flex-col">
+            <div class="text-mainColor flex gap-2 items-center text-3xl">
+                <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
+                <p class="font-bold">Mini Bio</p>
+            </div>
+
+            <div class="">
+                <p>{{ details[0].abstract }}</p>
+            </div>
+        </div>
+
+        {% if details[0].birthDate %}
+        <div class="gap-4 flex flex-col">
+            <div class="text-mainColor flex gap-2 items-center text-3xl">
+                <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
+                <p class="font-bold">Overview</p>
+            </div>
+            <div class="">
+                <div class="border-bottom flex gap-4 h-[50px]">
+                    <p class="font-bold">Born</p>
+                    <p class="name">{{ details[0].birthDate }} · {{ details[0].birthPlace |replace("http://dbpedia.org/resource/", "") |replace("_"," ") }}
+                    </p>
+                </div>
+                {% if details[0].birthName %}
+                <div class="border-bottom flex gap-4 h-[50px]">
+                    <p class="font-bold">Birth name</p>
+                    <p class="name">{{ details[0].birthName }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="gap-4 flex flex-col">
+            <div class="text-mainColor flex gap-2 items-center text-3xl">
+                <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
+                <p class="font-bold">Movies</p>
+            </div>
+
+            <div class="">
+                {% for detail in details %}
+                <div class="border-bottom flex gap-4 h-[50px] justify-between">
+                    <p class="font-bold hover:underline">{{ detail.movieLabel }}</p>
+                    {% if detail.movieRelease %}
+                        <p class="name">{{ detail.movieRelease[:4] }}</p>
+                    {% else %}
+                        <p class="name">2005</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <div class="text-mainColor">
+        {% include 'components/footer.html' %}
+    </div>
+
+    <script>
+        const location = document.getElementById('location');
+        const map = document.getElementById('map');
+
+        location.addEventListener('mouseover', () => {
+            map.classList.remove('hidden');
+        });
+
+        location.addEventListener('mouseout', () => {
+            map.classList.add('hidden');
+        });
+    </script>
+
+    <script src="../js/main.js"></script>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+              <script>
+                 // Creating map options
+                var latitude = {{ details[0].latitude | safe }};
+                var longitude = {{ details[0].longitude | safe }};
+                 var mapOptions = {
+                        center: [latitude,longitude],
+                        zoom: 10
+                    }
+                 // Creating a map object
+                 var maps = new L.map('maps', mapOptions);
+                 
+                 // Creating a Layer object
+                 var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+                 
+                 // Adding layer to the map
+                 maps.addLayer(layer);
+              </script>
+    {% endmacro %}
+    {% if role == "director" %}
+        {{ display_details(display.profile_details, role) }}
+    {% elif role == "actor" %}
+        {{ display_details(display.profile_details, role) }}
+    {% elif role == "writer" %}
+        {{ display_details(display.profile_details, role) }}
+    {% endif %}
+</body>
+
+</html>
