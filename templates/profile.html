@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    <head>
+    {% macro display_details(details,role) %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ role.capitalize() if role else 'Profile' }} Profile | {{ name }}" />
+    <meta property="og:description" content="Detailed Information of {{ role.capitalize() }}" />
+    {% if details[0].image_url %}<meta property="og:image" content="{{ details[0].image_url }}" />
+    {% else %}<meta property="og:image" content="{{ url_for('static', filename='img/default_image.jpg') }}" />{% endif %}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MOVA" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
@@ -15,7 +21,7 @@
     <div class="w-full bg-mainColor">
         {% include 'components/navbar.html' %}
     </div>
-    {% macro display_details(details,role) %}
+    
     <div class="profile-radius bg-mainColor h-[50vh] flex flex-col gap-8 justify-center items-center">
         {% if details[0].image_url %}
         <img class="rounded-full w-40 h-40 object-cover" src="{{ details[0].image_url }}" alt="">
@@ -28,17 +34,14 @@
             <p class="text-lg text-semiWhite opacity-50 flex items-center gap-1 cursor-pointer" id="location">
                 <i class="fa-solid fa-location-dot"></i>
                 {% if details[0].birthPlace %}
-                        {{ details[0].birthPlace |replace("http://dbpedia.org/resource/", "") |replace("_"," ") }}
+                        {{ details[0].location }}
                 {% else %}
                     Birthplace information not available.
                 {% endif %}
             </p>
             <div class="absolute -bottom-40 right-60 bg-transparent justify-end hidden w-[500px]" id="map">
                 <div class="bg-semiWhite p-2 shadow-lg rounded-md ">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21227025.39328672!2d-103.285865!3d49.499813!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sIndonesia!5e0!3m2!1sid!2sid!4v1698634959917!5m2!1sid!2sid"
-                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div id = "maps" style = "width: 500px; height: 380px"></div>
                 </div>
             </div>
         </div>
@@ -99,14 +102,6 @@
             </div>
         </div>
     </div>
-    {% endmacro %}
-    {% if role == "director" %}
-        {{ display_details(display.director_details, role) }}
-    {% elif role == "actor" %}
-        {{ display_details(display.actor_details, role) }}
-    {% elif role == "writer" %}
-        {{ display_details(display.writer_details, role) }}
-    {% endif %}
     <div class="text-mainColor">
         {% include 'components/footer.html' %}
     </div>
@@ -123,7 +118,34 @@
             map.classList.add('hidden');
         });
     </script>
+
     <script src="../js/main.js"></script>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+              <script>
+                 // Creating map options
+                var latitude = {{ details[0].latitude | safe }};
+                var longitude = {{ details[0].longitude | safe }};
+                 var mapOptions = {
+                        center: [latitude,longitude],
+                        zoom: 10
+                    }
+                 // Creating a map object
+                 var maps = new L.map('maps', mapOptions);
+                 
+                 // Creating a Layer object
+                 var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+                 
+                 // Adding layer to the map
+                 maps.addLayer(layer);
+              </script>
+    {% endmacro %}
+    {% if role == "director" %}
+        {{ display_details(display.profile_details, role) }}
+    {% elif role == "actor" %}
+        {{ display_details(display.profile_details, role) }}
+    {% elif role == "writer" %}
+        {{ display_details(display.profile_details, role) }}
+    {% endif %}
 </body>
 
 </html>

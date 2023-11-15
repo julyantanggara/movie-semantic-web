@@ -57,7 +57,12 @@ def get_wikilink_image_url(wikilink):
         return image_url
     else:
         return None
-    
+
+def split_comma(place):
+    name_place = place.split(", ")
+    final = name_place[0]
+    return final
+
 #route awal
 @app.route('/')
 def display_index():
@@ -301,33 +306,37 @@ def detail_page(role, name):
     converted_string = original_string.replace('_', ' ')
 
     display = {
-        "director_details": [],
-        "actor_details": [],
-        "writer_details": [],
+        "profile_details": [],
     }
 
-    if role == "director":
-        director_query = '''
+    if role == 'director':
+        dbo_name = 'director'
+    elif role == 'actor':
+        dbo_name = 'starring'
+    else:
+        dbo_name = 'writer'
+
+    profile_query = '''
             SELECT DISTINCT * WHERE {
-            ?movie dbo:director ?director.
-                ?director rdfs:label "'''+converted_string+'''"@en;
+            ?movie dbo:'''+dbo_name+''' ?profile.
+                ?profile rdfs:label "'''+converted_string+'''"@en;
                 dbo:abstract ?abstract;
                 prov:wasDerivedFrom ?wiki.
             ?movie rdfs:label ?movieLabel.
-            OPTIONAL{?director dbo:birthDate ?birthDate}
-            OPTIONAL{?director dbp:birthPlace ?birthPlace}
-            OPTIONAL{?director dbo:birthName ?birthName}
+            OPTIONAL{?profile dbo:birthDate ?birthDate}
+            OPTIONAL{?profile dbp:birthPlace ?birthPlace}
+            OPTIONAL{?profile dbo:birthName ?birthName}
             OPTIONAL{?movie dbo:releaseDate ?movieRelease}
             FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
             }
             GROUP BY ?movieLabel
             LIMIT 5
-        '''
-        sparql.setQuery(director_query)
-        result_director = sparql.query().convert()
-        director_details = []
-        for row in result_director["results"]["bindings"]:
-            director_detail = {
+    '''
+    sparql.setQuery(profile_query)
+    result_profile = sparql.query().convert()
+    profile_details = []
+    for row in result_profile["results"]["bindings"]:
+        profile_detail = {
                 "abstract": row.get("abstract", {}).get("value", ""),
                 "birthDate": row.get("birthDate", {}).get("value", ""),
                 "birthPlace": row.get("birthPlace", {}).get("value", ""),
@@ -335,94 +344,35 @@ def detail_page(role, name):
                 "movieLabel": row.get("movieLabel", {}).get("value", ""),
                 "movieRelease": row.get("movieRelease", {}).get("value", ""),
                 "wiki": row.get("wiki", {}).get("value", ""),
-            }
+        }
+        if profile_detail['birthPlace']:
+                place = profile_detail['birthPlace']
+                map_place = split_comma(place)
+                profile_detail['location'] = map_place.replace("http://dbpedia.org/resource/", "")
 
-            if director_detail["wiki"]:
-                wiki_url = director_detail["wiki"]
+                location_query ='''
+                        SELECT ?longitude ?latitude WHERE{
+                            ?location rdfs:label "'''+profile_detail['location']+'''"@en;
+                                geo:lat ?latitude;
+                                geo:long ?longitude.
+                        }
+                    '''
+                sparql.setQuery(location_query)
+                result_location = sparql.query().convert()
+                for row in result_location["results"]["bindings"]:
+                    location_detail= {
+                    "longitude": row.get("longitude",{}).get("value", ""),
+                    "latitude": row.get("latitude",{}).get("value", "")
+                    }
+                    profile_detail.update(location_detail)
+
+        if profile_detail["wiki"]:
+                wiki_url = profile_detail["wiki"]
                 image_url = get_wikilink_image_url(wiki_url)
-                director_detail["image_url"] = image_url
+                profile_detail["image_url"] = image_url
 
-            director_details.append(director_detail)
-        display["director_details"] = director_details
-
-    elif role == "actor":
-        actor_query = '''
-            SELECT DISTINCT * WHERE {
-            ?movie dbo:starring ?actor.
-                ?actor rdfs:label "'''+converted_string+'''"@en;
-                dbo:abstract ?abstract;
-                prov:wasDerivedFrom ?wiki.
-            ?movie rdfs:label ?movieLabel.
-            OPTIONAL{?actor dbo:birthDate ?birthDate}
-            OPTIONAL{?actor dbp:birthPlace ?birthPlace}
-            OPTIONAL{?actor dbo:birthName ?birthName}
-            OPTIONAL{?movie dbo:releaseDate ?movieRelease}
-            FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
-            }
-            GROUP BY ?movieLabel ?birthPlace
-            LIMIT 5
-        '''
-        sparql.setQuery(actor_query)
-        result_actor = sparql.query().convert()
-        actor_details = {}
-        for row in result_actor["results"]["bindings"]:
-            movie_label = row.get("movieLabel", {}).get("value", "")
-            if movie_label not in actor_details:
-                actor_detail = {
-                    "abstract": row.get("abstract", {}).get("value", ""),
-                    "birthDate": row.get("birthDate", {}).get("value", ""),
-                    "birthPlace": row.get("birthPlace", {}).get("value", ""),
-                    "birthName": row.get("birthName", {}).get("value", ""),
-                    "movieLabel": movie_label,
-                    "movieRelease": row.get("movieRelease", {}).get("value", ""),
-                    "wiki": row.get("wiki", {}).get("value", ""),
-                }
-                if actor_detail["wiki"]:
-                    wiki_url = actor_detail["wiki"]
-                    image_url = get_wikilink_image_url(wiki_url)
-                    actor_detail["image_url"] = image_url
-
-                actor_details[movie_label] = actor_detail
-        display["actor_details"] = list(actor_details.values())
-
-    elif role == "writer":
-        writer_query = '''
-            SELECT DISTINCT * WHERE {
-            ?movie dbo:writer ?writer.
-            ?writer rdfs:label "'''+converted_string+'''"@en;
-                dbo:abstract ?abstract;
-                prov:wasDerivedFrom ?wiki.
-            ?movie rdfs:label ?movieLabel.
-            OPTIONAL{?movie dbo:releaseDate ?movieRelease}
-            OPTIONAL{?writer dbo:birthDate ?birthDate}
-            OPTIONAL{?writer dbp:birthPlace ?birthPlace}
-            OPTIONAL{?writer dbo:birthName ?birthName}
-           FILTER (lang(?abstract) = "en" && lang(?movieLabel) = "en")
-            }
-            LIMIT 5
-        '''
-        sparql.setQuery(writer_query)
-        result_writer = sparql.query().convert()
-
-        # Extracting the writer details
-        writer_details = []
-        for row in result_writer["results"]["bindings"]:
-            writer_detail = {
-                "abstract": row.get("abstract", {}).get("value", ""),
-                "birthDate": row.get("birthDate", {}).get("value", ""),
-                "birthPlace": row.get("birthPlace", {}).get("value", ""),
-                "birthName": row.get("birthName", {}).get("value", ""),
-                "movieLabel": row.get("movieLabel", {}).get("value", ""),
-                "movieRelease": row.get("movieRelease", {}).get("value", ""),
-                "wiki": row.get("wiki", {}).get("value", ""),
-            }
-            if writer_detail["wiki"]:
-                wiki_url = writer_detail["wiki"]
-                image_url = get_wikilink_image_url(wiki_url)
-                writer_detail["image_url"] = image_url
-
-            writer_details.append(writer_detail)
-        display["writer_details"] = writer_details
+        profile_details.append(profile_detail)
+    display["profile_details"] = profile_details
     return render_template('profile.html', display=display,role=role,name=converted_string)
 
 @app.route('/query', methods=['GET','POST'])
