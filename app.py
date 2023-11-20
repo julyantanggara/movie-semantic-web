@@ -553,4 +553,4 @@ def filter(type,desc):
     return render_template('filter.html',desc=desc,data=data)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
