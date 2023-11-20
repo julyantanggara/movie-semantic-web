@@ -39,15 +39,16 @@
                     Birthplace information not available.
                 {% endif %}
             </p>
-            <div class="absolute -bottom-40 right-60 bg-transparent justify-end hidden w-[500px]" id="map">
-                <div class="bg-semiWhite p-2 shadow-lg rounded-md ">
-                    <div id = "maps" style = "width: 500px; height: 380px"></div>
+
+            <div class="absolute -bottom-40 right-40 md:right-96 bg-transparent md:pl-40 justify-end hidden" id="map">
+                <div class="bg-semiWhite p-2 shadow-lg rounded-md">
+                    <div id = "maps" class=""></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="px-72 py-8 flex flex-col gap-14">
+    <div class="px-8 md:px-72 py-8 flex flex-col gap-14">
         <div class="gap-4 flex flex-col">
             <div class="text-mainColor flex gap-2 items-center text-3xl">
                 <i class="fa-solid fa-grip-lines-vertical gradient-text-light"></i>
@@ -119,7 +120,7 @@
         });
     </script>
 
-    <script src="../js/main.js"></script>
+    <script src="../static/js/main.js"></script>
     <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
               <script>
                  // Creating map options

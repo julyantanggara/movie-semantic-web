@@ -21,14 +21,15 @@
         {% include 'components/navbar.html' %}
     </div>
     <!-- BACKGROUND START -->
-    <img src="{{ details.image_url }}" class="w-[400px] absolute top-0 left-[570px] -z-50" alt="">
-    <div class="absolute top-0 -z-40 h-[100vh] w-full bg-mainColor bg-opacity-30 backdrop-blur-[150px]"></div>
+    <img src="{{ details.image_url }}" class="md:w-[400px] absolute top-0 left-1/3 md:left-[570px] -z-50" alt="">
+    <div class="absolute top-0 -z-40 h-full md:h-[100vh] w-full bg-mainColor bg-opacity-30 backdrop-blur-[150px]"></div>
     <!-- BACKGROUND END -->
-    <div class="w-full mb-16 px-56 py-8 flex flex-col gap-4">
+    <div class="w-full mb-16 px-8 md:px-56 py-8 flex flex-col gap-4">
         <div class="flex justify-between">
-            <div class="flex flex-col gap-4">
-                <p class="text-5xl font-bold text-semiWhite">{{details.moviename}}</p>
-                <div class="text-lg font-light text-semiWhite flex gap-2">
+
+            <div class="flex flex-col gap-2 md:gap-4">
+                <p class="text-3xl md:text-5xl font-bold text-semiWhite">{{details.moviename}}</p>
+                <div class="text-sm font-light text-semiWhite flex gap-2">
                     <p>{{ details.year }}</p>
                     <span>&#x2022;</span>
                     <p>{{ details.category }}</p>
@@ -39,18 +40,18 @@
                 </div>
             </div>
             <div class="flex gap-2 pr-1 pt-1">
-                <i class="fa-solid fa-star text-2xl" style="color: #f6ca2a;"></i>
+                <i class="fa-solid fa-star text-lg md:text-2xl" style="color: #f6ca2a;"></i>
                 <div class="text-semiWhite flex flex-col">
-                    <p><span class="font-bold text-2xl">{{ details.rating }}</span> <span class="opacity-80 text-lg">/
+                    <p><span class="font-bold text-lg md:text-2xl">{{ details.rating }}</span> <span class="opacity-80 text-lg">/
                             10 </span> </p>
                 </div>
             </div>
         </div>
 
-        <div class="flex gap-2">
-            <img src="{{ details.image_url }}" class="w-[278.27px] h-[414.68px] rounded-md" alt="">
+        <div class="flex flex-col-reverse md:flex-row gap-2 items-center md:justify-start">
+            <img src="{{ details.image_url }}" class="w-full md:w-[278.27px] md:h-[414.68px] rounded-md" alt="">
 
-            <iframe class="rounded-md shadow-md" width="800" height="414.68" src="{{ details.trailer }}"
+            <iframe class="rounded-md shadow-md w-full h-[180px] md:w-[800px] md:h-[414.68px]" src="{{ details.trailer }}"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
@@ -68,45 +69,54 @@
         <p class="text-semiWhite text-lg">{{ details.abstract }}</p>
 
         <div class="">
-            <!-- Directors -->
-            <div class="flex gap-4 text-semiWhite border-top">
-                <b class="w-[100px]">Directors</b>
-                {% if details.director %}
-                {% for director in details.director %}
-                <span>&#x2022;</span>
-                <a href="{{ url_for('detail_page', role='director', name=director) }}" class="name">{{ director |replace("_", " ") }}</a>
-                {% endfor %}
-                {% else %}
-                <p>No director information available.</p>
-                {% endif %}
-            </div>
-
-            <!-- Writers -->
-            <div class="flex gap-4 text-semiWhite border-top">
-                <b class="w-[100px]">Writers</b>
-                {% if details.writer %}
-                {% for writer in details.writer %}
-                <span>&#x2022;</span>
-                <a href="{{ url_for('detail_page', role='writer', name=writer) }}" class="name">{{ writer |replace("_", " ") }}</a>
-                {% endfor %}
-                {% else %}
-                <p>No writer information available.</p>
-                {% endif %}
-            </div>
-
-            <!-- Casts -->
-            <div class="flex gap-4 text-semiWhite border-top">
-                <b class="w-[100px]">Casts</b>
-                    {% if details.starring %}
-                        {% for starring in details.starring %}
-                        <span>&#x2022;</span>
-                        <a href="{{ url_for('detail_page', role='actor', name=starring) }}" class="name">{{ starring |replace("_", " ") }}</a>
+            <table class="w-full movieDetailTable">
+                <!-- Directors -->
+                <tr class="w-[100%]">
+                    <td class="w-[13%] md:mr-0 text-semiWhite align-text-top">
+                        <b>Directors</b>
+                    </td>
+                    <td class="w-[100%] flex gap-4 flex-wrap">
+                        {% if details.director %}
+                        {% for director in details.director %}
+                        <a href="{{ url_for('detail_page', role='director', name=director) }}" class="name"><span class="text-white">&#x2022;</span> {{ director |replace("_", " ") }}</a>
                         {% endfor %}
-                    {% else %}
-                        <p>No cast information available.</p>
-                    {% endif %}
-                </div>
-            </div>
+                        {% else %}
+                        <p>No director information available.</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                <!-- Writers -->
+                <tr class="w-[100%]">
+                    <td class="w-[13%] md:mr-0 text-semiWhite align-text-top">
+                        <b>Writers</b>
+                    </td>
+                    <td class="w-[100%] flex gap-4 flex-wrap">
+                        {% if details.writer %}
+                        {% for writer in details.writer %}
+                        <a href="{{ url_for('detail_page', role='writer', name=writer) }}" class="name"><span class="text-white">&#x2022;</span> {{ writer |replace("_", " ") }}</a>
+                        {% endfor %}
+                        {% else %}
+                        <p>No writer information available.</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                <!-- Casts -->
+                <tr class="w-[100%]">
+                    <td class="w-[13%] md:mr-0 text-semiWhite align-text-top">
+                        <b>Casts</b>
+                    </td>
+                    <td class="w-[100%] flex gap-4 flex-wrap">
+                        {% if details.starring %}
+                        {% for starring in details.starring %}
+                        <a href="{{ url_for('detail_page', role='actor', name=starring) }}" class="name"><span class="text-white">&#x2022;</span> {{ starring |replace("_", " ") }}
+                        </a>
+                        {% endfor %}
+                        {% else %}
+                            <p>No cast information available.</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
 
         </div>
     </div>

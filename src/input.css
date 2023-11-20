@@ -220,3 +220,17 @@ input[type="checkbox"]:checked::before {
 #map:hover{
   display: flex;
 }
+
+.movieDetailTable {
+  width: 100%;
+}
+
+.movieDetailTable tr 
+{
+  border-top: 2px solid white;
+}
+
+.movieDetailTable td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
