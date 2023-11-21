@@ -1,5 +1,5 @@
 #module framework flask
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request
 #module untuk keperluan web scrapping
 import requests
 from bs4 import BeautifulSoup
@@ -415,8 +415,7 @@ def process_form():
             'image_url': image_url
         })
 
-    popular_query = '''
-    '''+prefixes+''' 
+    popular_query = prefixes+'''
     SELECT ?number ?moviename ?wiki ?rating ?category ?year (GROUP_CONCAT(?genre; separator=" / ") as ?genres)
     WHERE {
         ?movie rdf:type movie:search;
